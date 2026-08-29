@@ -10,23 +10,23 @@ export default function WebsitePolicies() {
     <div className="min-h-screen py-10" style={{ background: "var(--background)" }} id="main-content">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
           <Link to="/" className="hover:underline">{t("होम", "Home")}</Link>
           <span>›</span>
-          <span className="text-gray-800 dark:text-gray-200 font-semibold">{t("वेबसाइट नीतियां", "Website Policies")}</span>
+          <span className="text-gray-800 font-semibold">{t("वेबसाइट नीतियां", "Website Policies")}</span>
         </div>
 
         {/* Card */}
-        <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
           {/* Header */}
-          <div className="p-6 sm:p-8 border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-[#131a2a]">
-            <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-blue-50 dark:bg-blue-950/50 text-[#1a237e] dark:text-blue-300 mb-2 border border-blue-200 dark:border-blue-800">
+          <div className="p-6 sm:p-8 border-b border-gray-200 bg-gray-50">
+            <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-blue-50 text-[#1a237e] mb-2 border border-blue-200">
               🏛️ {t("प्रशासनिक सुधार और लोक शिकायत विभाग · भारत सरकार", "Department of Administrative Reforms & Public Grievances · Govt of India")}
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
               {t("वेबसाइट नीतियां (Website Policies)", "Website Policies")}
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-sm text-gray-500 mt-1">
               {t(
                 "कॉपीराइट, हाइपरलिंकिंग, गोपनीयता नीति और नियम एवं शर्तें।",
                 "Copyright Policy, Hyperlinking Policy, Privacy Policy, and Terms & Conditions."
@@ -48,7 +48,7 @@ export default function WebsitePolicies() {
                   className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer ${
                     activeTab === tab.id
                       ? "bg-[#1a237e] text-white shadow-sm"
-                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-100"
                   }`}
                 >
                   <span>{tab.icon}</span>
@@ -59,13 +59,13 @@ export default function WebsitePolicies() {
           </div>
 
           {/* Content Body */}
-          <div className="p-6 sm:p-10 space-y-10 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="p-6 sm:p-10 space-y-10 text-sm text-gray-700 leading-relaxed">
             {/* ── 1. COPYRIGHT POLICY ── */}
             {(activeTab === "all" || activeTab === "copyright") && (
               <section id="copyright" className="space-y-4">
-                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <span className="text-xl">©️</span>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-lg font-bold text-gray-900">
                     {t("कॉपीराइट नीति (Copyright Policy)", "Copyright Policy")}
                   </h2>
                 </div>
@@ -81,16 +81,16 @@ export default function WebsitePolicies() {
 
             {/* ── 2. HYPERLINKING POLICY ── */}
             {(activeTab === "all" || activeTab === "hyperlink") && (
-              <section id="hyperlinking" className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+              <section id="hyperlinking" className="space-y-4 pt-4 border-t border-gray-200">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <span className="text-xl">🔗</span>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-lg font-bold text-gray-900">
                     {t("हाइपरलिंकिंग नीति (Hyperlinking Policy)", "Hyperlinking Policy")}
                   </h2>
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
+                  <h3 className="font-bold text-base text-gray-900 mb-2">
                     {t("बाहरी वेबसाइटों/पोर्टलों के लिंक (Links to external Websites/portals)", "Links to external Websites/portals")}
                   </h3>
                   <p>
@@ -102,7 +102,7 @@ export default function WebsitePolicies() {
                 </div>
 
                 <div>
-                  <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
+                  <h3 className="font-bold text-base text-gray-900 mb-2">
                     {t("अन्य वेबसाइटों/पोर्टलों द्वारा हमारी वेबसाइट के लिंक (Links to our Website by other Websites/Portals)", "Links to our Website by other Websites/Portals")}
                   </h3>
                   <p>
@@ -117,10 +117,10 @@ export default function WebsitePolicies() {
 
             {/* ── 3. PRIVACY POLICY ── */}
             {(activeTab === "all" || activeTab === "privacy") && (
-              <section id="privacy" className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+              <section id="privacy" className="space-y-4 pt-4 border-t border-gray-200">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <span className="text-xl">🛡️</span>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-lg font-bold text-gray-900">
                     {t("गोपनीयता नीति (Privacy Policy)", "Privacy Policy")}
                   </h2>
                 </div>
@@ -150,10 +150,10 @@ export default function WebsitePolicies() {
 
             {/* ── 4. TERMS & CONDITIONS ── */}
             {(activeTab === "all" || activeTab === "terms") && (
-              <section id="terms" className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="flex items-center gap-2 pb-2 border-b border-gray-200 dark:border-gray-700">
+              <section id="terms" className="space-y-4 pt-4 border-t border-gray-200">
+                <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
                   <span className="text-xl">📜</span>
-                  <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-lg font-bold text-gray-900">
                     {t("नियम और शर्तें (Terms & Conditions)", "Terms & Conditions")}
                   </h2>
                 </div>
@@ -211,19 +211,19 @@ export default function WebsitePolicies() {
           </div>
 
           {/* Card Footer */}
-          <div className="p-4 sm:p-6 bg-gray-50 dark:bg-[#131a2a] border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500 dark:text-gray-400">
-            <Link to="/disclaimer" className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline">
+          <div className="p-4 sm:p-6 bg-gray-50 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+            <Link to="/disclaimer" className="text-[#1a237e] font-semibold hover:underline">
               ← {t("अस्वीकरण (Disclaimer)", "Disclaimer")}
             </Link>
             <div className="flex items-center gap-4">
-              <Link to="/dpdp" className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline">
+              <Link to="/dpdp" className="text-[#1a237e] font-semibold hover:underline">
                 {t("DPDP 2023 अनुपालन केंद्र", "DPDP 2023 Compliance")} →
               </Link>
               <a
                 href="https://darpg.gov.in/en/web-information-manager"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline"
+                className="text-[#1a237e] font-semibold hover:underline"
               >
                 {t("वेब सूचना प्रबंधक (WIM)", "Web Information Manager")} ↗
               </a>

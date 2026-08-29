@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 
 export default function Navbar() {
-  const { lang, setLang, t, currentUser, logout, theme, toggleTheme, textScale, setTextScale, increaseTextScale, decreaseTextScale, resetTextScale } = useApp();
+  const { lang, setLang, t, currentUser, logout, textScale, setTextScale, increaseTextScale, decreaseTextScale, resetTextScale } = useApp();
   const [menuOpen, setMenuOpen] = useState(false);
   const loc = useLocation();
   const navigate = useNavigate();
@@ -113,20 +113,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* ── DEDICATED DARK MODE TOGGLE ── */}
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="flex items-center gap-1 px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-[11px] font-medium text-white border border-white/20 transition-all cursor-pointer"
-              title={theme === "dark" ? t("लाइट मोड सक्षम करें", "Switch to Light Mode") : t("डार्क मोड सक्षम करें", "Switch to Dark Mode")}
-              aria-label={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            >
-              <span>{theme === "dark" ? "☀️" : "🌙"}</span>
-              <span className="hidden sm:inline">
-                {theme === "dark" ? t("लाइट", "Light") : t("डार्क", "Dark")}
-              </span>
-            </button>
-
             {/* Language Toggle in Top Strip for mobile/convenience */}
             <button
               type="button"
@@ -171,7 +157,7 @@ export default function Navbar() {
               <div className="text-xs text-gray-500 leading-tight">
                 {t("प्रशासनिक सुधार और लोक शिकायत विभाग", "Department of Administrative Reforms & Public Grievances")}
               </div>
-              <div className="text-base sm:text-lg font-bold text-[#1a237e] dark:text-blue-300 leading-tight">
+              <div className="text-base sm:text-lg font-bold text-[#1a237e] leading-tight">
                 {t("CPGRAMS", "CPGRAMS")}
               </div>
               <div className="text-xs text-gray-500 leading-tight hidden sm:block">
@@ -186,14 +172,14 @@ export default function Navbar() {
               <div className="hidden sm:flex items-center gap-2">
                 <Link
                   to="/profile"
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 border border-gray-300 rounded transition-colors"
                 >
                   <span>👤</span>
                   <span className="max-w-24 truncate">{currentUser.name.split(" ")[0]}</span>
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 border border-red-200 dark:border-red-800 rounded transition-colors cursor-pointer"
+                  className="px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50 border border-red-200 rounded transition-colors cursor-pointer"
                 >
                   {t("लॉगआउट", "Sign Out")}
                 </button>
@@ -210,9 +196,9 @@ export default function Navbar() {
             )}
 
             {/* CPGRAMS logo block with updated AI-Enabled tagline */}
-            <div className="hidden lg:block border-l border-gray-200 dark:border-gray-700 pl-4 text-right">
-              <div className="text-xl font-extrabold tracking-wide text-[#1a237e] dark:text-blue-300">CPGRAMS</div>
-              <div className="text-[10px] text-gray-500 dark:text-gray-400 font-medium leading-tight max-w-36">
+            <div className="hidden lg:block border-l border-gray-200 pl-4 text-right">
+              <div className="text-xl font-extrabold tracking-wide text-[#1a237e]">CPGRAMS</div>
+              <div className="text-[10px] text-gray-500 font-medium leading-tight max-w-36">
                 {t("AI-सक्षम स्मार्ट रूटिंग", "AI-Enabled Smart Routing")}
               </div>
             </div>
@@ -220,12 +206,12 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="sm:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="sm:hidden p-2 rounded hover:bg-gray-100 transition-colors"
               aria-label="Toggle menu"
             >
-              <div className="w-5 h-0.5 bg-gray-600 dark:bg-gray-300 mb-1.5" />
-              <div className="w-5 h-0.5 bg-gray-600 dark:bg-gray-300 mb-1.5" />
-              <div className="w-5 h-0.5 bg-gray-600 dark:bg-gray-300" />
+              <div className="w-5 h-0.5 bg-gray-600 mb-1.5" />
+              <div className="w-5 h-0.5 bg-gray-600 mb-1.5" />
+              <div className="w-5 h-0.5 bg-gray-600" />
             </button>
           </div>
         </div>
@@ -260,19 +246,13 @@ export default function Navbar() {
 
       {/* ── MOBILE MENU ── */}
       {menuOpen && (
-        <div className="sm:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111827] shadow-xl z-50">
+        <div className="sm:hidden border-t border-gray-200 bg-white shadow-xl z-50">
           <div className="px-4 py-2 space-y-1">
             {/* Mobile Accessibility Bar */}
-            <div className="flex items-center justify-between py-2 px-3 bg-gray-50 dark:bg-gray-800/50 rounded mb-2 text-xs">
-              <span className="text-gray-500 dark:text-gray-400 font-semibold">{t("एक्सेसिबिलिटी", "Accessibility")}:</span>
+            <div className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded mb-2 text-xs">
+              <span className="text-gray-500 font-semibold">{t("एक्सेसिबिलिटी", "Accessibility")}:</span>
               <div className="flex items-center gap-2">
-                <button
-                  onClick={toggleTheme}
-                  className="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 font-medium"
-                >
-                  {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
-                </button>
-                <div className="flex items-center gap-1 bg-gray-200 dark:bg-gray-700 rounded px-1">
+                <div className="flex items-center gap-1 bg-gray-200 rounded px-1">
                   <button onClick={decreaseTextScale} className="px-1.5 py-0.5 font-bold">A-</button>
                   <button onClick={resetTextScale} className="px-1.5 py-0.5 font-bold">A</button>
                   <button onClick={increaseTextScale} className="px-1.5 py-0.5 font-bold">A+</button>
@@ -287,17 +267,17 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className={`block px-3 py-3 rounded text-sm font-medium transition-colors ${
                   isActive(link.to)
-                    ? "bg-blue-50 dark:bg-blue-950/40 text-[#1a237e] dark:text-blue-300 font-bold"
-                    : "text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    ? "bg-blue-50 text-[#1a237e] font-bold"
+                    : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="border-t border-gray-100 dark:border-gray-800 pt-2 mt-2 space-y-1">
+            <div className="border-t border-gray-100 pt-2 mt-2 space-y-1">
               <button
                 onClick={() => { setLang(lang === "hi" ? "en" : "hi"); setMenuOpen(false); }}
-                className="block w-full text-left px-3 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 rounded"
+                className="block w-full text-left px-3 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded"
               >
                 🌐 {lang === "hi" ? "Switch to English" : "हिंदी में बदलें"}
               </button>

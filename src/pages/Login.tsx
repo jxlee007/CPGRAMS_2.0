@@ -191,14 +191,14 @@ export default function Login() {
             </div>
 
             {/* Proof-of-Work (PoW) Cryptographic CAPTCHA */}
-            <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 bg-gray-50 dark:bg-[#111827] flex items-center justify-between text-xs">
+            <div className="border border-gray-200 rounded-lg p-2.5 bg-gray-50 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2">
                 <span className="text-green-600 font-bold">✓</span>
-                <span className="text-gray-700 dark:text-gray-300 font-medium">
+                <span className="text-gray-700 font-medium">
                   {t("PoW क्रिप्टोग्राफिक सुरक्षा सत्यापित", "PoW Security Verified")}
                 </span>
               </div>
-              <Link to="/pow-demo" className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline text-[11px]">
+              <Link to="/pow-demo" className="text-[#1a237e] font-semibold hover:underline text-[11px]">
                 ALTCHA →
               </Link>
             </div>
@@ -227,16 +227,16 @@ export default function Login() {
               {t("नया पंजीकरण करें", "Click here to Register")}
             </Link>
 
-            <div className="border-t border-gray-100 dark:border-gray-800 pt-4 flex items-center justify-center gap-3 text-xs text-gray-500">
-              <Link to="/privacy" className="hover:underline text-blue-700 dark:text-blue-400">
+            <div className="border-t border-gray-100 pt-4 flex items-center justify-center gap-3 text-xs text-gray-500">
+              <Link to="/privacy" className="hover:underline text-blue-700">
                 {t("गोपनीयता सूचना", "Privacy Notice")}
               </Link>
               <span>•</span>
-              <Link to="/dpdp" className="hover:underline text-blue-700 dark:text-blue-400">
+              <Link to="/dpdp" className="hover:underline text-blue-700">
                 {t("DPDP 2023", "DPDP 2023")}
               </Link>
               <span>•</span>
-              <Link to="/disclaimer" className="hover:underline text-blue-700 dark:text-blue-400">
+              <Link to="/disclaimer" className="hover:underline text-blue-700">
                 {t("अस्वीकरण", "Disclaimer")}
               </Link>
             </div>

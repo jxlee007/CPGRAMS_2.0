@@ -52,25 +52,25 @@ export default function DpdpCompliance() {
     <div className="min-h-screen py-10" style={{ background: "var(--background)" }} id="main-content">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
           <Link to="/" className="hover:underline">{t("होम", "Home")}</Link>
           <span>›</span>
           <Link to="/privacy" className="hover:underline">{t("गोपनीयता", "Privacy")}</Link>
           <span>›</span>
-          <span className="text-gray-800 dark:text-gray-200 font-semibold">{t("DPDP 2023 अनुपालन केंद्र", "DPDP Act 2023 Compliance")}</span>
+          <span className="text-gray-800 font-semibold">{t("DPDP 2023 अनुपालन केंद्र", "DPDP Act 2023 Compliance")}</span>
         </div>
 
         {/* Main Header */}
-        <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 mb-6">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 mb-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-green-50 dark:bg-green-950/50 text-green-800 dark:text-green-300 mb-2 border border-green-200 dark:border-green-800">
+              <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-green-50 text-green-800 mb-2 border border-green-200">
                 🛡️ {t("डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 (DPDP Act, 2023)", "Digital Personal Data Protection Act, 2023")}
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
                 {t("DPDP 2023 वैधानिक अनुपालन एवं नागरिक अधिकार केंद्र", "DPDP Act 2023 Statutory Compliance & Rights Center")}
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 max-w-2xl">
+              <p className="text-sm text-gray-500 mt-1 max-w-2xl">
                 {t(
                   "नागरिक (डेटा प्रिंसिपल) के अधिकारों का संरक्षण, सहमति प्रबंधन, और डेटा सुरक्षा बोर्ड ऑफ इंडिया (DPBI) शिकायत निवारण ढांचा।",
                   "Protecting citizen (Data Principal) rights, consent architecture, and Data Protection Board of India (DPBI) redressal framework."
@@ -78,15 +78,15 @@ export default function DpdpCompliance() {
               </p>
             </div>
 
-            <div className="flex-shrink-0 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-lg p-3 text-xs text-blue-900 dark:text-blue-200">
+            <div className="flex-shrink-0 bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-900">
               <div className="font-bold">{t("डेटा प्रत्ययी (Data Fiduciary):", "Data Fiduciary:")}</div>
               <div>DARPG, Government of India</div>
-              <div className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 font-mono">DPO Reg: IN-DARPG-DPDP-001</div>
+              <div className="text-[11px] text-gray-500 mt-0.5 font-mono">DPO Reg: IN-DARPG-DPDP-001</div>
             </div>
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-2 mt-6 overflow-x-auto pb-1 border-t border-gray-100 dark:border-gray-700 pt-4">
+          <div className="flex items-center gap-2 mt-6 overflow-x-auto pb-1 border-t border-gray-100 pt-4">
             {[
               { id: "notice", label: t("धारा 5 सूचना", "Section 5 Notice"), icon: "📄" },
               { id: "rights", label: t("नागरिक अधिकार (अध्याय III)", "Data Principal Rights"), icon: "⚖️" },
@@ -100,7 +100,7 @@ export default function DpdpCompliance() {
                 className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer ${
                   activeSection === tab.id
                     ? "bg-[#1a237e] text-white shadow-sm"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
               >
                 <span>{tab.icon}</span>
@@ -112,34 +112,34 @@ export default function DpdpCompliance() {
 
         {/* ── TAB 1: SECTION 5 NOTICE ── */}
         {activeSection === "notice" && (
-          <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-6 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-            <div className="flex items-center gap-2 pb-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 space-y-6 text-sm text-gray-700 leading-relaxed">
+            <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
               <span className="text-2xl">📄</span>
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h2 className="text-lg font-bold text-gray-900">
                   {t("धारा 5 — व्यक्तिगत डेटा एकत्र करने से पूर्व अनिवार्य सूचना", "Section 5 Notice — Prior to Personal Data Processing")}
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   {t("DPDP अधिनियम 2023 की धारा 5(1) के तहत नागरिक को दी जाने वाली स्पष्ट एवं मदवार सूचना।", "Clear itemised statutory notice under Section 5(1) of DPDP Act 2023.")}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-[#111827] border border-gray-200 dark:border-gray-700">
-                <h3 className="font-bold text-gray-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">
                   1. {t("एकत्रित किए जाने वाले व्यक्तिगत डेटा की मदें", "Itemised Personal Data Collected")}
                 </h3>
                 <ul className="space-y-1.5 text-xs">
                   <li>• <strong>{t("पहचान एवं संपर्क:", "Identity & Contact:")}</strong> {t("नाम, मोबाइल नंबर, ईमेल आईडी (प्रमाणीकरण हेतु)।", "Name, Mobile Number, Email ID (for authentication).")}</li>
                   <li>• <strong>{t("स्थान विवरण:", "Location:")}</strong> {t("राज्य, जिला, पिनकोड (अधिकार क्षेत्र निर्धारण हेतु)।", "State, District, Pincode (to determine jurisdiction).")}</li>
                   <li>• <strong>{t("शिकायत विवरण:", "Grievance Record:")}</strong> {t("शिकायत का विवरण एवं संलग्न सहायक दस्तावेज।", "Grievance text and supporting annexures.")}</li>
-                  <li className="text-amber-600 dark:text-amber-400 font-semibold">• <strong>{t("डेटा न्यूनीकरण:", "Data Minimisation:")}</strong> {t("कोई अनावश्यक बायोमेट्रिक या वित्तीय डेटा एकत्र नहीं किया जाता।", "No redundant sensitive or biometric data collected.")}</li>
+                  <li className="text-amber-600 font-semibold">• <strong>{t("डेटा न्यूनीकरण:", "Data Minimisation:")}</strong> {t("कोई अनावश्यक बायोमेट्रिक या वित्तीय डेटा एकत्र नहीं किया जाता।", "No redundant sensitive or biometric data collected.")}</li>
                 </ul>
               </div>
 
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-[#111827] border border-gray-200 dark:border-gray-700">
-                <h3 className="font-bold text-gray-900 dark:text-white text-xs uppercase tracking-wider mb-2">
+              <div className="p-4 rounded-lg bg-gray-50 border border-gray-200">
+                <h3 className="font-bold text-gray-900 text-xs uppercase tracking-wider mb-2">
                   2. {t("प्रसंस्करण का विनिर्दिष्ट उद्देश्य", "Specified Purpose of Processing")}
                 </h3>
                 <ul className="space-y-1.5 text-xs">
@@ -151,8 +151,8 @@ export default function DpdpCompliance() {
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-xs">
-              <span className="font-bold text-blue-900 dark:text-blue-200">
+            <div className="p-4 rounded-lg bg-blue-50 border border-blue-200 text-xs">
+              <span className="font-bold text-blue-900">
                 {t("आठवीं अनुसूची भाषा सुलभता:", "Eighth Schedule Language Accessibility:")}
               </span>{" "}
               {t(
@@ -165,14 +165,14 @@ export default function DpdpCompliance() {
 
         {/* ── TAB 2: DATA PRINCIPAL RIGHTS (CHAPTER III) ── */}
         {activeSection === "rights" && (
-          <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-6">
-            <div className="flex items-center gap-2 pb-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
               <span className="text-2xl">⚖️</span>
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h2 className="text-lg font-bold text-gray-900">
                   {t("अध्याय III — नागरिक (डेटा प्रिंसिपल) के वैधानिक अधिकार", "Chapter III — Statutory Data Principal Rights")}
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   {t("DPDP 2023 के तहत नागरिक किसी भी समय अपने डेटा अधिकारों का प्रयोग कर सकते हैं।", "Direct tools to exercise your statutory rights guaranteed under Sections 11-14.")}
                 </p>
               </div>
@@ -180,15 +180,15 @@ export default function DpdpCompliance() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Right 1: Access */}
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-gray-50/50 dark:bg-[#111827] flex flex-col justify-between">
+              <div className="border border-gray-200 rounded-lg p-4 bg-gray-50 flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-bold text-blue-800 dark:text-blue-300 uppercase mb-1">
+                  <div className="text-xs font-bold text-blue-800 uppercase mb-1">
                     {t("धारा 11 — पहुंच का अधिकार", "Section 11 — Right to Access")}
                   </div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
+                  <h3 className="font-bold text-gray-900 text-sm mb-1">
                     {t("व्यक्तिगत डेटा की प्रति प्राप्त करें", "Access & Summary of Personal Data")}
                   </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                  <p className="text-xs text-gray-600 leading-relaxed mb-3">
                     {t("अपने सभी व्यक्तिगत डेटा, शिकायतों का इतिहास और किस विभाग के साथ साझा किया गया, उसका पूरा सारांश डाउनलोड करें।", "Download a complete extract of all your personal data, filed complaints, and departmental transfers.")}
                   </p>
                 </div>
@@ -198,15 +198,15 @@ export default function DpdpCompliance() {
               </div>
 
               {/* Right 2: Correction & Erasure */}
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-gray-50/50 dark:bg-[#111827] flex flex-col justify-between">
+              <div className="border border-gray-200 rounded-lg p-4 bg-gray-50 flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-bold text-green-800 dark:text-green-300 uppercase mb-1">
+                  <div className="text-xs font-bold text-green-800 uppercase mb-1">
                     {t("धारा 12 — सुधार एवं मिटाने का अधिकार", "Section 12 — Correction & Erasure")}
                   </div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
+                  <h3 className="font-bold text-gray-900 text-sm mb-1">
                     {t("डेटा सुधार अथवा विलोपन अनुरोध", "Correction, Updating & Erasure")}
                   </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                  <p className="text-xs text-gray-600 leading-relaxed mb-3">
                     {t("अशुद्ध या भ्रामक व्यक्तिगत डेटा में सुधार का अनुरोध करें या खाता बंद होने पर डेटा मिटाने का अनुरोध करें।", "Request immediate rectification of inaccurate personal details or statutory erasure of completed grievance records.")}
                   </p>
                 </div>
@@ -214,22 +214,22 @@ export default function DpdpCompliance() {
                   <Link to="/privacy/correction" className="btn-gov-secondary text-xs px-2 py-1.5 text-center flex-1">
                     ✏️ {t("सुधार करें", "Correct")}
                   </Link>
-                  <Link to="/privacy/delete" className="px-2 py-1.5 rounded text-xs font-semibold bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800 hover:bg-red-100 transition-colors text-center flex-1">
+                  <Link to="/privacy/delete" className="px-2 py-1.5 rounded text-xs font-semibold bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors text-center flex-1">
                     🗑️ {t("विलोपन", "Erase")}
                   </Link>
                 </div>
               </div>
 
               {/* Right 3: Grievance Redressal */}
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-gray-50/50 dark:bg-[#111827] flex flex-col justify-between">
+              <div className="border border-gray-200 rounded-lg p-4 bg-gray-50 flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-bold text-purple-800 dark:text-purple-300 uppercase mb-1">
+                  <div className="text-xs font-bold text-purple-800 uppercase mb-1">
                     {t("धारा 13 — शिकायत निवारण का अधिकार", "Section 13 — Privacy Grievance Redressal")}
                   </div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
+                  <h3 className="font-bold text-gray-900 text-sm mb-1">
                     {t("डेटा गोपनीयता शिकायत दर्ज करें", "Raise Data Protection Grievance")}
                   </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                  <p className="text-xs text-gray-600 leading-relaxed mb-3">
                     {t("डेटा उल्लंघन या अनुचित प्रसंस्करण संबंधी शिकायत DARPG के डेटा संरक्षण अधिकारी (DPO) के समक्ष उठाएं।", "Report any unauthorized processing, security concern, or delay in exercising rights to the Data Protection Officer.")}
                   </p>
                 </div>
@@ -239,15 +239,15 @@ export default function DpdpCompliance() {
               </div>
 
               {/* Right 4: Right to Nominate */}
-              <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-gray-50/50 dark:bg-[#111827] flex flex-col justify-between">
+              <div className="border border-gray-200 rounded-lg p-4 bg-gray-50 flex flex-col justify-between">
                 <div>
-                  <div className="text-xs font-bold text-amber-800 dark:text-amber-300 uppercase mb-1">
+                  <div className="text-xs font-bold text-amber-800 uppercase mb-1">
                     {t("धारा 14 — नामांकित करने का अधिकार", "Section 14 — Right to Nominate")}
                   </div>
-                  <h3 className="font-bold text-gray-900 dark:text-white text-sm mb-1">
+                  <h3 className="font-bold text-gray-900 text-sm mb-1">
                     {t("कानूनी उत्तराधिकारी / प्रतिनिधि नामांकन", "Nomination of Representative")}
                   </h3>
-                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
+                  <p className="text-xs text-gray-600 leading-relaxed mb-3">
                     {t("असमर्थता या मृत्यु की स्थिति में अपने डेटा अधिकारों का प्रयोग करने के लिए किसी व्यक्ति को नामांकित करें।", "Nominate an individual who shall exercise your data principal rights in event of death or incapacity.")}
                   </p>
                 </div>
@@ -262,12 +262,12 @@ export default function DpdpCompliance() {
             </div>
 
             {/* Nomination Form Section 14 */}
-            <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 mt-4">
-              <h4 className="font-bold text-sm text-amber-900 dark:text-amber-200 mb-2">
+            <div className="p-4 rounded-lg bg-amber-50 border border-amber-200 mt-4">
+              <h4 className="font-bold text-sm text-amber-900 mb-2">
                 ✍️ {t("धारा 14 नामांकन फॉर्म (Statutory Nominee Designation)", "Section 14 Nominee Designation")}
               </h4>
               {nomineeSubmitted ? (
-                <div className="p-3 bg-green-100 dark:bg-green-950/60 border border-green-300 text-green-900 dark:text-green-200 rounded text-xs font-semibold">
+                <div className="p-3 bg-green-100 border border-green-300 text-green-900 rounded text-xs font-semibold">
                   ✓ {t(`नामांकन सफलतापूर्वक पंजीकृत! नामांकित व्यक्ति: ${nomineeName} (${nomineeContact})`, `Nominee successfully recorded! Nominee: ${nomineeName} (${nomineeContact})`)}
                 </div>
               ) : (
@@ -284,7 +284,7 @@ export default function DpdpCompliance() {
                     value={nomineeName}
                     onChange={(e) => setNomineeName(e.target.value)}
                     placeholder={t("नामांकित व्यक्ति का पूरा नाम", "Nominee Full Name")}
-                    className="p-2 border border-amber-300 dark:border-amber-700 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                    className="p-2 border border-amber-300 rounded bg-white text-gray-900"
                   />
                   <input
                     type="text"
@@ -292,7 +292,7 @@ export default function DpdpCompliance() {
                     value={nomineeContact}
                     onChange={(e) => setNomineeContact(e.target.value)}
                     placeholder={t("मोबाइल / ईमेल", "Nominee Mobile or Email")}
-                    className="p-2 border border-amber-300 dark:border-amber-700 rounded bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+                    className="p-2 border border-amber-300 rounded bg-white text-gray-900"
                   />
                   <button type="submit" className="btn-gov-primary text-xs py-2 px-3">
                     {t("नामांकित दर्ज करें", "Register Nominee")}
@@ -305,14 +305,14 @@ export default function DpdpCompliance() {
 
         {/* ── TAB 3: CONSENT LEDGER (SECTION 6) ── */}
         {activeSection === "consent" && (
-          <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-6">
-            <div className="flex items-center gap-2 pb-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
               <span className="text-2xl">📋</span>
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h2 className="text-lg font-bold text-gray-900">
                   {t("धारा 6 — नागरिक सहमति खाता-बही (Consent Ledger)", "Section 6 — Consent Ledger & Revocation")}
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   {t("सहमति उतनी ही आसानी से वापस ली जा सकती है जितनी आसानी से दी गई थी (धारा 6(4))।", "Right to withdraw consent as easily as it was granted under Section 6(4).")}
                 </p>
               </div>
@@ -321,7 +321,7 @@ export default function DpdpCompliance() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs border-collapse">
                 <thead>
-                  <tr className="bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-bold border-b border-gray-200 dark:border-gray-700">
+                  <tr className="bg-gray-100 text-gray-700 font-bold border-b border-gray-200">
                     <th className="py-3 px-3">{t("उद्देश्य", "Processing Purpose")}</th>
                     <th className="py-3 px-3">{t("कानूनी आधार", "Lawful Basis")}</th>
                     <th className="py-3 px-3">{t("सहमति तिथि", "Timestamp")}</th>
@@ -329,17 +329,17 @@ export default function DpdpCompliance() {
                     <th className="py-3 px-3 text-right">{t("वापसी कार्रवाई", "Action")}</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody className="divide-y divide-gray-200">
                   {consentLedger.map((c) => (
-                    <tr key={c.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
-                      <td className="py-3 px-3 font-semibold text-gray-900 dark:text-white">
+                    <tr key={c.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="py-3 px-3 font-semibold text-gray-900">
                         <div>{c.purpose}</div>
                         <div className="text-[10px] text-gray-400 font-normal mt-0.5">{c.desc}</div>
                       </td>
-                      <td className="py-3 px-3 text-gray-600 dark:text-gray-400">{c.basis}</td>
+                      <td className="py-3 px-3 text-gray-600">{c.basis}</td>
                       <td className="py-3 px-3 font-mono text-gray-500">{c.date}</td>
                       <td className="py-3 px-3 text-center">
-                        <span className="px-2 py-0.5 rounded bg-green-100 dark:bg-green-950/60 text-green-800 dark:text-green-300 font-bold text-[10px]">
+                        <span className="px-2 py-0.5 rounded bg-green-100 text-green-800 font-bold text-[10px]">
                           ✓ {c.status}
                         </span>
                       </td>
@@ -347,7 +347,7 @@ export default function DpdpCompliance() {
                         {c.removable ? (
                           <Link
                             to="/privacy/withdraw"
-                            className="text-red-600 dark:text-red-400 font-semibold hover:underline"
+                            className="text-red-600 font-semibold hover:underline"
                           >
                             {t("वापस लें", "Withdraw")}
                           </Link>
@@ -365,36 +365,36 @@ export default function DpdpCompliance() {
 
         {/* ── TAB 4: DATA PROTECTION OFFICER (DPO) ── */}
         {activeSection === "dpo" && (
-          <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-6">
-            <div className="flex items-center gap-2 pb-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
               <span className="text-2xl">👤</span>
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h2 className="text-lg font-bold text-gray-900">
                   {t("डेटा संरक्षण अधिकारी (Data Protection Officer - DPO)", "Data Protection Officer (DPO) - DARPG")}
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   {t("DPDP अधिनियम की धारा 8 एवं धारा 9 के तहत नामित वैधानिक संपर्क।", "Statutory contact mandated under Sections 8 & 9 for significant data fiduciary.")}
                 </p>
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/60 dark:bg-[#111827] flex flex-col sm:flex-row items-start gap-4">
+            <div className="p-6 rounded-xl border border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-start gap-4">
               <div className="w-16 h-16 rounded-full bg-[#880e4f] text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">
                 DP
               </div>
-              <div className="flex-1 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+              <div className="flex-1 space-y-2 text-sm text-gray-700">
+                <h3 className="text-lg font-bold text-gray-900">
                   {t("डॉ. अनुराग श्रीवास्तव, आई.ए.एस.", "Dr. Anurag Srivastava, IAS")}
                 </h3>
-                <div className="text-xs font-semibold text-[#1a237e] dark:text-blue-300">
+                <div className="text-xs font-semibold text-[#1a237e]">
                   {t("संयुक्त सचिव एवं नामित डेटा संरक्षण अधिकारी (DPO)", "Joint Secretary & Designated Data Protection Officer")}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="text-xs text-gray-500">
                   {t("प्रशासनिक सुधार और लोक शिकायत विभाग (DARPG), भारत सरकार", "Department of Administrative Reforms & Public Grievances, Government of India")}
                 </div>
-                <div className="pt-2 border-t border-gray-200 dark:border-gray-700 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <div className="pt-2 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                   <div>📞 <strong>Telephone:</strong> 011-23741006 / 011-23401455</div>
-                  <div>📧 <strong>DPO Email:</strong> <a href="mailto:dpo-cpgrams@nic.in" className="text-[#1a237e] dark:text-blue-300 underline font-bold">dpo-cpgrams@nic.in</a></div>
+                  <div>📧 <strong>DPO Email:</strong> <a href="mailto:dpo-cpgrams@nic.in" className="text-[#1a237e] underline font-bold">dpo-cpgrams@nic.in</a></div>
                   <div className="sm:col-span-2">🏢 <strong>Office:</strong> 5th Floor, Sardar Patel Bhawan, Sansad Marg, New Delhi — 110001</div>
                 </div>
               </div>
@@ -404,21 +404,21 @@ export default function DpdpCompliance() {
 
         {/* ── TAB 5: DPBI BOARD ESCALATION ── */}
         {activeSection === "dpbi" && (
-          <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-6">
-            <div className="flex items-center gap-2 pb-3 border-b border-gray-200 dark:border-gray-700">
+          <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-2 pb-3 border-b border-gray-200">
               <span className="text-2xl">🏛️</span>
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+                <h2 className="text-lg font-bold text-gray-900">
                   {t("धारा 18 — डेटा संरक्षण बोर्ड ऑफ इंडिया (DPBI) में अपील", "Section 18 — Escalation to Data Protection Board of India (DPBI)")}
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-gray-500">
                   {t("यदि आप DPO के समाधान से संतुष्ट नहीं हैं तो सीधे केंद्रीय बोर्ड में शिकायत दर्ज करने का अधिकार।", "Direct statutory right to approach DPBI if aggrieved by Data Fiduciary.")}
                 </p>
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-xs leading-relaxed space-y-2">
-              <p className="font-semibold text-blue-900 dark:text-blue-200">
+            <div className="p-4 rounded-lg bg-blue-50 border border-blue-200 text-xs leading-relaxed space-y-2">
+              <p className="font-semibold text-blue-900">
                 {t("वैधानिक प्रक्रिया (Statutory Procedure under Section 18):", "Statutory Procedure under Section 18:")}
               </p>
               <p>
@@ -435,13 +435,13 @@ export default function DpdpCompliance() {
               </p>
             </div>
 
-            <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 text-xs text-gray-600 dark:text-gray-300">
-              <div className="font-bold text-gray-900 dark:text-white mb-1">
+            <div className="border border-gray-200 rounded-lg p-4 text-xs text-gray-600">
+              <div className="font-bold text-gray-900 mb-1">
                 {t("डेटा संरक्षण बोर्ड ऑफ इंडिया (DPBI) संदर्भ:", "Data Protection Board of India (DPBI) Reference:")}
               </div>
               <div>Digital Personal Data Protection Board of India, New Delhi</div>
               <div className="mt-1">
-                Official Digital Portal: <a href="https://meity.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#1a237e] dark:text-blue-300 underline font-bold">dpbi.gov.in (via MeitY) ↗</a>
+                Official Digital Portal: <a href="https://meity.gov.in" target="_blank" rel="noopener noreferrer" className="text-[#1a237e] underline font-bold">dpbi.gov.in (via MeitY) ↗</a>
               </div>
             </div>
           </div>

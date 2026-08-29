@@ -544,15 +544,15 @@ export default function FileComplaint() {
               {/* Voice Input Section with Indic Language Picker */}
               <div className="form-field sm:col-span-2">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <label className="mb-0 font-bold text-gray-900 dark:text-white">
+                  <label className="mb-0 font-bold text-gray-900">
                     {t("शिकायत का विवरण", "Grievance Description")} <span className="req">*</span>
                   </label>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500 dark:text-gray-400 font-semibold">🇮🇳 {t("भाषा चुनें:", "Voice Language:")}</span>
+                    <span className="text-xs text-gray-500 font-semibold">🇮🇳 {t("भाषा चुनें:", "Voice Language:")}</span>
                     <select
                       value={selectedVoiceLang}
                       onChange={(e) => setSelectedVoiceLang(e.target.value)}
-                      className="text-xs py-1 px-2.5 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#182236] text-gray-800 dark:text-gray-200 font-semibold cursor-pointer"
+                      className="text-xs py-1 px-2.5 rounded border border-gray-300 bg-white text-gray-800 font-semibold cursor-pointer"
                     >
                       {SUPPORTED_LANGUAGES.map((lang) => (
                         <option key={lang.code} value={lang.code}>
@@ -583,12 +583,12 @@ export default function FileComplaint() {
                     </button>
                   </div>
                 ) : isVoiceLoading ? (
-                  <div className="p-5 border border-indigo-200 dark:border-indigo-800 bg-indigo-50/70 dark:bg-indigo-950/40 rounded-xl mb-3 text-center">
+                  <div className="p-5 border border-indigo-200 bg-indigo-50/70 rounded-xl mb-3 text-center">
                     <div className="inline-block animate-spin text-2xl mb-2">⚡</div>
-                    <div className="text-sm font-bold text-indigo-900 dark:text-indigo-300">
+                    <div className="text-sm font-bold text-indigo-900">
                       {t("Sarvam AI ट्रांसक्रिप्शन एवं अनुवाद जारी है...", "Sarvam AI is transcribing & translating Indic speech...")}
                     </div>
-                    <div className="text-xs text-indigo-700 dark:text-indigo-400 mt-1">
+                    <div className="text-xs text-indigo-700 mt-1">
                       {t("मातृभाषा से अंग्रेज़ी अनुवाद तैयार हो रहा है", "Generating bilingual record for backend routing")}
                     </div>
                   </div>
@@ -596,25 +596,25 @@ export default function FileComplaint() {
                   <button
                     type="button"
                     onClick={startRecording}
-                    className="w-full flex items-center justify-between p-3.5 mb-3 border-2 border-dashed border-indigo-300 dark:border-indigo-800/80 rounded-xl hover:border-indigo-500 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/30 transition-all bg-white dark:bg-[#182236]"
+                    className="w-full flex items-center justify-between p-3.5 mb-3 border-2 border-dashed border-indigo-300 rounded-xl hover:border-indigo-500 hover:bg-indigo-50/50 transition-all bg-white"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0 bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-bold">
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-lg flex-shrink-0 bg-indigo-100 text-indigo-800 font-bold">
                         🎤
                       </div>
                       <div className="text-left">
-                        <div className="font-bold text-gray-900 dark:text-white text-sm flex items-center gap-2">
+                        <div className="font-bold text-gray-900 text-sm flex items-center gap-2">
                           <span>{t("आवाज़ से शिकायत बोलें", "Speak Your Complaint (Voice Input)")}</span>
-                          <span className="text-[10px] px-2 py-0.2 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-bold border border-indigo-200 dark:border-indigo-700">
+                          <span className="text-[10px] px-2 py-0.2 rounded-full bg-indigo-100 text-indigo-800 font-bold border border-indigo-200">
                             🇮🇳 Sarvam AI
                           </span>
                         </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400">
+                        <div className="text-xs text-gray-500">
                           {t("हिंदी, तमिल, तेलुगु, मराठी सहित 10+ भाषाएं समर्थित", "Hindi, Tamil, Telugu, Marathi + 10 Indic languages")}
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs font-bold text-indigo-700 dark:text-indigo-400 px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-900/40">
+                    <span className="text-xs font-bold text-indigo-700 px-3 py-1.5 rounded-lg bg-indigo-50">
                       {t("रिकॉर्ड शुरू करें", "Start Recording")} →
                     </span>
                   </button>
@@ -623,20 +623,20 @@ export default function FileComplaint() {
                 {/* Bilingual Transcribed Previews */}
                 {nativeVoiceText && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                    <div className="p-3 bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 rounded-lg">
-                      <div className="text-[11px] font-bold text-blue-900 dark:text-blue-300 uppercase tracking-wide mb-1 flex items-center gap-1">
-                        <span>🗣️</span> {t("हमने सुना (मूल भाषा):", "We Heard (Native Language):")}
+                    <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                      <div className="text-[11px] font-bold text-blue-900 uppercase tracking-wide mb-1 flex items-center gap-1">
+                        <span>🗣️</span> {t(" हमने सुना (मूल भाषा):", "We Heard (Native Language):")}
                       </div>
-                      <p className="text-xs text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+                      <p className="text-xs text-gray-800 leading-relaxed font-medium">
                         {nativeVoiceText}
                       </p>
                     </div>
 
-                    <div className="p-3 bg-emerald-50/80 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800/60 rounded-lg">
-                      <div className="text-[11px] font-bold text-emerald-900 dark:text-emerald-300 uppercase tracking-wide mb-1 flex items-center gap-1">
+                    <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg">
+                      <div className="text-[11px] font-bold text-emerald-900 uppercase tracking-wide mb-1 flex items-center gap-1">
                         <span>🌐</span> {t("अनुवादित (Officer Translation):", "Translated (For Officer Processing):")}
                       </div>
-                      <p className="text-xs text-gray-800 dark:text-gray-200 leading-relaxed font-medium">
+                      <p className="text-xs text-gray-800 leading-relaxed font-medium">
                         {englishVoiceText || nativeVoiceText}
                       </p>
                     </div>
@@ -670,7 +670,7 @@ export default function FileComplaint() {
                       key={s.id}
                       type="button"
                       onClick={() => { setText(s.text); setGrievanceTitle(s.title); }}
-                      className="text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#182236] hover:bg-blue-50 dark:hover:bg-blue-950/40 text-gray-600 dark:text-gray-300 transition-colors"
+                      className="text-xs px-2 py-1 rounded border border-gray-200 bg-gray-50 hover:bg-blue-50 text-gray-600 transition-colors"
                     >
                       {s.text.slice(0, 35)}…
                     </button>

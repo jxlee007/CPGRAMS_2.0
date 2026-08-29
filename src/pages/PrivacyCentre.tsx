@@ -59,8 +59,8 @@ export default function PrivacyCentre() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{t("गोपनीयता और डेटा", "Privacy & Data")}</h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{t("अपनी जानकारी और सहमति प्रबंधित करें।", "Manage your information and consent.")}</p>
+        <h1 className="text-2xl font-bold text-gray-900">{t("गोपनीयता और डेटा", "Privacy & Data")}</h1>
+        <p className="text-sm text-gray-500 mt-1">{t("अपनी जानकारी और सहमति प्रबंधित करें।", "Manage your information and consent.")}</p>
       </div>
 
       {/* DPDP Statutory Compliance Banner */}

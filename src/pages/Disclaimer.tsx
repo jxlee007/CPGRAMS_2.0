@@ -8,23 +8,23 @@ export default function Disclaimer() {
     <div className="min-h-screen py-10" style={{ background: "var(--background)" }} id="main-content">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 mb-4">
+        <div className="flex items-center gap-2 text-xs text-gray-500 mb-4">
           <Link to="/" className="hover:underline">{t("होम", "Home")}</Link>
           <span>›</span>
-          <span className="text-gray-800 dark:text-gray-200 font-semibold">{t("अस्वीकरण", "Disclaimer")}</span>
+          <span className="text-gray-800 font-semibold">{t("अस्वीकरण", "Disclaimer")}</span>
         </div>
 
         {/* Card */}
-        <div className="bg-white dark:bg-[#182236] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-10">
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-10">
           {/* Header */}
-          <div className="border-b border-gray-200 dark:border-gray-700 pb-6 mb-6">
-            <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-blue-50 dark:bg-blue-950/50 text-[#1a237e] dark:text-blue-300 mb-3 border border-blue-200 dark:border-blue-800">
+          <div className="border-b border-gray-200 pb-6 mb-6">
+            <div className="inline-flex items-center gap-2 text-xs font-bold px-2.5 py-1 rounded bg-blue-50 text-[#1a237e] mb-3 border border-blue-200">
               ⚖️ {t("आधिकारिक सरकारी अस्वीकरण एवं नीतियां", "Official Government Disclaimer & Policies")}
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
               {t("अस्वीकरण (Disclaimer)", "Disclaimer")}
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            <p className="text-sm text-gray-500 mt-1">
               {t(
                 "केंद्रीय लोक शिकायत निवारण और निगरानी प्रणाली (CPGRAMS) — एनआईसी, भारत सरकार",
                 "Centralised Public Grievance Redress And Monitoring System (CPGRAMS) — NIC, Government of India"
@@ -32,10 +32,10 @@ export default function Disclaimer() {
             </p>
           </div>
 
-          <div className="space-y-8 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          <div className="space-y-8 text-sm text-gray-700 leading-relaxed">
             {/* ── SECTION 1: DISCLAIMER ── */}
             <section className="space-y-4">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white pb-2 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-gray-900 pb-2 border-b border-gray-100 flex items-center gap-2">
                 <span>📌</span>
                 <span>{t("अस्वीकरण (Disclaimer)", "Disclaimer")}</span>
               </h2>
@@ -91,8 +91,8 @@ export default function Disclaimer() {
             </section>
 
             {/* ── SECTION 2: PRIVACY POLICY ── */}
-            <section className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white pb-2 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2">
+            <section className="space-y-4 pt-4 border-t border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 pb-2 border-b border-gray-100 flex items-center gap-2">
                 <span>🛡️</span>
                 <span>{t("गोपनीयता नीति (Privacy Policy)", "Privacy Policy")}</span>
               </h2>
@@ -127,14 +127,14 @@ export default function Disclaimer() {
             </section>
 
             {/* ── SECTION 3: LINKING POLICY ── */}
-            <section className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white pb-2 border-b border-gray-100 dark:border-gray-700 flex items-center gap-2">
+            <section className="space-y-4 pt-4 border-t border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 pb-2 border-b border-gray-100 flex items-center gap-2">
                 <span>🔗</span>
                 <span>{t("लिंकिंग नीति (Linking Policy)", "Linking Policy")}</span>
               </h2>
 
               <div>
-                <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
+                <h3 className="font-bold text-base text-gray-900 mb-2">
                   {t("बाहरी वेबसाइटों/पोर्टलों के लिंक (Links to external websites/portals)", "Links to external websites/portals")}
                 </h3>
                 <p>
@@ -146,7 +146,7 @@ export default function Disclaimer() {
               </div>
 
               <div>
-                <h3 className="font-bold text-base text-gray-900 dark:text-white mb-2">
+                <h3 className="font-bold text-base text-gray-900 mb-2">
                   {t("अन्य वेबसाइटों द्वारा लोक शिकायत पोर्टल के लिंक (Links to Public Grievance Portal by other websites)", "Links to Public Grievance Portal by other websites")}
                 </h3>
                 <p>
@@ -157,8 +157,8 @@ export default function Disclaimer() {
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 text-xs">
-                <p className="text-gray-700 dark:text-gray-300">
+              <div className="p-4 rounded-lg bg-blue-50 border border-blue-200 text-xs">
+                <p className="text-gray-700">
                   {t(
                     "हमारे पोर्टल से लिंक करने के लिए अधिक विवरण और बैनर के लिए हमारे संपर्क अनुभाग पर जाएं:",
                     "For more details and banners to link to our Portal visit our Contact Us Section:"
@@ -167,7 +167,7 @@ export default function Disclaimer() {
                     href="https://pgportal.gov.in/Home/ContactUs"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-bold text-[#1a237e] dark:text-blue-300 underline inline-flex items-center gap-1 ml-1"
+                    className="font-bold text-[#1a237e] underline inline-flex items-center gap-1 ml-1"
                   >
                     <span>Contact Us (pgportal.gov.in/Home/ContactUs)</span>
                     <span>↗</span>
@@ -178,19 +178,19 @@ export default function Disclaimer() {
           </div>
 
           {/* Footer Bar of Card */}
-          <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-10 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
             <div>
               {t("राष्ट्रीय सूचना विज्ञान केंद्र (NIC) · भारत सरकार", "National Informatics Centre (NIC) · Government of India")}
             </div>
             <div className="flex items-center gap-4">
-              <Link to="/website-policies" className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline">
+              <Link to="/website-policies" className="text-[#1a237e] font-semibold hover:underline">
                 {t("वेबसाइट नीतियां", "Website Policies")} →
               </Link>
               <a
                 href="https://darpg.gov.in/en/web-information-manager"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1a237e] dark:text-blue-300 font-semibold hover:underline"
+                className="text-[#1a237e] font-semibold hover:underline"
               >
                 {t("वेब सूचना प्रबंधक", "Web Information Manager")} ↗
               </a>

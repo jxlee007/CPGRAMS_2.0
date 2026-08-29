@@ -313,18 +313,18 @@ export default function Accountability() {
 
       {/* ── SECTION 2.5: PUBLIC AUTO-ESCALATION RADAR & CPGRAMS STATUTORY OVERSIGHT ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10">
-        <div className="bg-white dark:bg-[#182236] border border-gray-200 dark:border-gray-700/80 rounded shadow-sm overflow-hidden border-t-4 border-t-[#c62828]">
+        <div className="bg-white border border-gray-200 rounded shadow-sm overflow-hidden border-t-4 border-t-[#c62828]">
           {/* Section Header */}
-          <div className="p-5 border-b border-gray-200 dark:border-gray-700/80 bg-gradient-to-r from-red-50/40 via-white to-amber-50/30 dark:from-red-950/30 dark:via-[#182236] dark:to-amber-950/20">
+          <div className="p-5 border-b border-gray-200 bg-gradient-to-r from-red-50/40 via-white to-amber-50/30">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
               <div>
-                <div className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300 border border-red-200 dark:border-red-800/60 mb-1.5">
+                <div className="inline-flex items-center gap-1.5 text-[11px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider bg-red-100 text-red-800 border border-red-200 mb-1.5">
                   🚨 {t("CPGRAMS वैधानिक स्वतः एस्केलेशन रडार", "CPGRAMS Statutory Auto-Escalation Radar")}
                 </div>
-                <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <h2 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
                   <span>{t("कागजी खानापूर्ति पर रोक: स्वतः एस्केलेशन प्रणाली", "Ending Paper Compliance: The Auto-Escalation Loop")}</span>
                 </h2>
-                <p className="text-xs text-gray-600 dark:text-gray-300 mt-1 max-w-3xl leading-relaxed">
+                <p className="text-xs text-gray-600 mt-1 max-w-3xl leading-relaxed">
                   {t(
                     "जब कोई नागरिक शिकायत बंद होने के बाद 1-2 स्टार (खराब) रेटिंग देता है या 'समस्या ठीक नहीं हुई' दर्ज करता है, तो मामला स्वतः राज्य नोडल पीजी अधिकारी एवं नोडल अपीलीय प्राधिकरण को 24-48 घंटे में एस्केलेट होता है।",
                     "When a citizen rates ≤ 2 stars ('Poor') or reports 'problem not fixed', CPGRAMS auto-escalates to State Nodal PG Officers & the Nodal Appellate Authority within 24-48h."
@@ -334,33 +334,33 @@ export default function Accountability() {
 
               {/* Status Summary Pills */}
               <div className="flex flex-wrap items-center gap-2 self-start lg:self-auto">
-                <div className="bg-white dark:bg-[#111827] border border-red-200 dark:border-red-800/60 shadow-2xs rounded px-3 py-1.5 text-center">
-                  <div className="text-[10px] uppercase tracking-wider text-red-600 dark:text-red-400 font-bold">{t("सक्रिय एस्केलेशन", "Active Escalations")}</div>
-                  <div className="text-lg font-black text-red-700 dark:text-red-300">{systemHealth.activeEscalations}</div>
+                <div className="bg-white border border-red-200 shadow-2xs rounded px-3 py-1.5 text-center">
+                  <div className="text-[10px] uppercase tracking-wider text-red-600 font-bold">{t("सक्रिय एस्केलेशन", "Active Escalations")}</div>
+                  <div className="text-lg font-black text-red-700">{systemHealth.activeEscalations}</div>
                 </div>
-                <div className="bg-white dark:bg-[#111827] border border-green-200 dark:border-green-800/60 shadow-2xs rounded px-3 py-1.5 text-center">
-                  <div className="text-[10px] uppercase tracking-wider text-green-600 dark:text-green-400 font-bold">{t("इस माह निवारित", "Redressed (Month)")}</div>
-                  <div className="text-lg font-black text-green-700 dark:text-green-300">{systemHealth.escalationsResolvedThisMonth}</div>
+                <div className="bg-white border border-green-200 shadow-2xs rounded px-3 py-1.5 text-center">
+                  <div className="text-[10px] uppercase tracking-wider text-green-600 font-bold">{t("इस माह निवारित", "Redressed (Month)")}</div>
+                  <div className="text-lg font-black text-green-700">{systemHealth.escalationsResolvedThisMonth}</div>
                 </div>
-                <div className="bg-white dark:bg-[#111827] border border-blue-200 dark:border-blue-800/60 shadow-2xs rounded px-3 py-1.5 text-center">
-                  <div className="text-[10px] uppercase tracking-wider text-blue-600 dark:text-blue-400 font-bold">{t("राष्ट्रीय एस्केलेशन दर", "National Rate")}</div>
-                  <div className="text-lg font-black text-[#1a237e] dark:text-blue-300">{systemHealth.escalationRate}%</div>
+                <div className="bg-white border border-blue-200 shadow-2xs rounded px-3 py-1.5 text-center">
+                  <div className="text-[10px] uppercase tracking-wider text-blue-600 font-bold">{t("राष्ट्रीय एस्केलेशन दर", "National Rate")}</div>
+                  <div className="text-lg font-black text-[#1a237e]">{systemHealth.escalationRate}%</div>
                 </div>
               </div>
             </div>
 
             {/* Radar Navigation Tabs */}
-            <div className="flex gap-2 mt-5 overflow-x-auto pb-1 border-t border-gray-200/80 dark:border-gray-700/80 pt-4">
+            <div className="flex gap-2 mt-5 overflow-x-auto pb-1 border-t border-gray-200/80 pt-4">
               <button
                 onClick={() => setEscalationTab("active")}
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-bold transition-all ${
                   escalationTab === "active"
                     ? "bg-[#c62828] text-white shadow-xs"
-                    : "bg-white dark:bg-[#111827] text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 <span>🚨 {t("सक्रिय एस्केलेशन", "Active Escalations")}</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${escalationTab === "active" ? "bg-white/30 text-white" : "bg-red-100 dark:bg-red-950/60 text-red-800 dark:text-red-300"}`}>
+                <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${escalationTab === "active" ? "bg-white/30 text-white" : "bg-red-100 text-red-800"}`}>
                   {escalations.filter((e) => e.status === "active").length}
                 </span>
               </button>
@@ -370,11 +370,11 @@ export default function Accountability() {
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-bold transition-all ${
                   escalationTab === "resolved"
                     ? "bg-[#2e7d32] text-white shadow-xs"
-                    : "bg-white dark:bg-[#111827] text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 <span>✅ {t("नोडल अधिकारियों द्वारा हल", "Resolved by Nodal Officers")}</span>
-                <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${escalationTab === "resolved" ? "bg-white/30 text-white" : "bg-green-100 dark:bg-green-950/60 text-green-800 dark:text-green-300"}`}>
+                <span className={`px-1.5 py-0.2 rounded-full text-[10px] ${escalationTab === "resolved" ? "bg-white/30 text-white" : "bg-green-100 text-green-800"}`}>
                   {escalations.filter((e) => e.status === "closed").length}
                 </span>
               </button>
@@ -384,11 +384,11 @@ export default function Accountability() {
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded text-xs font-bold transition-all ${
                   escalationTab === "rules"
                     ? "bg-[#1a237e] text-white shadow-xs"
-                    : "bg-white dark:bg-[#111827] text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 <span>⚖️ {t("CPGRAMS पदानुक्रम एवं नियम", "CPGRAMS Hierarchy & Rules")}</span>
-                <span className="text-[10px] px-1.5 py-0.2 rounded bg-indigo-100 dark:bg-indigo-950/60 text-indigo-900 dark:text-indigo-200 font-semibold">
+                <span className="text-[10px] px-1.5 py-0.2 rounded bg-indigo-100 text-indigo-900 font-semibold">
                   3 {t("नियम", "Rules")}
                 </span>
               </button>
@@ -1060,8 +1060,8 @@ export default function Accountability() {
                         <div className="flex items-center gap-2">
                           <span>{t(s.stateHi, s.state)}</span>
                           <span className="text-[10px] text-gray-400 font-mono">({s.abbreviation})</span>
-                          {s.trend === "up" && <span className="text-green-600 dark:text-green-400 text-[10px]" title="Improving">▲</span>}
-                          {s.trend === "down" && <span className="text-red-500 dark:text-red-400 text-[10px]" title="Declining">▼</span>}
+                          {s.trend === "up" && <span className="text-green-600 text-[10px]" title="Improving">▲</span>}
+                          {s.trend === "down" && <span className="text-red-500 text-[10px]" title="Declining">▼</span>}
                         </div>
                         <div className="text-[10px] text-gray-400 font-normal">
                           {s.totalCases.toLocaleString()} {t("केस दर्ज", "cases filed")}
@@ -1090,10 +1090,10 @@ export default function Accountability() {
                         <span
                           className={`font-semibold ${
                             s.realSolutionRate >= 0.85
-                              ? "text-green-700 dark:text-green-400"
+                              ? "text-green-700"
                               : s.realSolutionRate >= 0.7
-                              ? "text-blue-700 dark:text-blue-300"
-                              : "text-amber-700 dark:text-amber-400"
+                              ? "text-blue-700"
+                              : "text-amber-700"
                           }`}
                         >
                           {(s.realSolutionRate * 100).toFixed(0)}%
@@ -1105,10 +1105,10 @@ export default function Accountability() {
                         <span
                           className={`font-medium ${
                             s.avgResolutionDays <= 15
-                              ? "text-green-700 dark:text-green-400 font-bold"
+                              ? "text-green-700 font-bold"
                               : s.avgResolutionDays <= 30
-                              ? "text-gray-700 dark:text-gray-300"
-                              : "text-red-600 dark:text-red-400 font-semibold"
+                              ? "text-gray-700"
+                              : "text-red-600 font-semibold"
                           }`}
                         >
                           {s.avgResolutionDays} {t("दिन", "days")}
@@ -1117,7 +1117,7 @@ export default function Accountability() {
 
                       {/* Citizen Rating */}
                       <td className="py-3 px-4 text-center">
-                        <span className="inline-flex items-center gap-1 font-bold text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/20 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-800/50">
+                        <span className="inline-flex items-center gap-1 font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
                           ★ {s.satisfaction.toFixed(1)}
                         </span>
                       </td>
@@ -1172,20 +1172,20 @@ export default function Accountability() {
       </div>
       {/* ── SECTION 4: SOCIAL MEDIA IMPACT ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-10 mb-12">
-        <div className="bg-white dark:bg-[#141e2e] border border-gray-200 dark:border-gray-700 rounded shadow-sm overflow-hidden">
+        <div className="bg-white border border-gray-200 rounded shadow-sm overflow-hidden">
 
           {/* Header */}
-          <div className="p-5 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#111827]">
+          <div className="p-5 border-b border-gray-200 bg-gray-50">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
               <div>
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                   <span>📱</span>
                   <span>{t("सोशल मीडिया जवाबदेही प्रभाव", "Social Media Accountability Impact")}</span>
-                  <span className="text-xs font-normal px-2 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-700 ml-1">
+                  <span className="text-xs font-normal px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200 ml-1">
                     {socialMediaImpact.hashtag}
                   </span>
                 </h2>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+                <p className="text-xs text-gray-500 mt-0.5">
                   {t(
                     "नागरिकों के शेयर से जवाबदेही वायरल होती है। हर शेयर अधिकारी पर सामाजिक दबाव बनाता है।",
                     "Citizen shares make accountability viral. Each share amplifies pressure on officers beyond the internal dashboard."
@@ -1193,7 +1193,7 @@ export default function Accountability() {
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs px-3 py-1.5 rounded-lg font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-400 border border-amber-200 dark:border-amber-800/50">
+                <span className="text-xs px-3 py-1.5 rounded-lg font-bold bg-amber-100 text-amber-800 border border-amber-200">
                   🔥 Trending #{socialMediaImpact.trending.rank} — {socialMediaImpact.trending.category}
                 </span>
               </div>
@@ -1205,15 +1205,15 @@ export default function Accountability() {
             {/* Top KPI row */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {[
-                { label: t("कुल शेयर", "Total Shares"),         value: socialMediaImpact.total_shares.toLocaleString(),      icon: "🔁", color: "text-indigo-700 dark:text-indigo-300" },
-                { label: t("कुल पहुंच", "Total Reach"),          value: `${(socialMediaImpact.total_reach / 1000).toFixed(0)}K`, icon: "👥", color: "text-blue-700 dark:text-blue-300" },
-                { label: t("कुल इम्प्रेशन", "Total Impressions"),  value: `${(socialMediaImpact.total_impressions / 1000000).toFixed(1)}M`, icon: "📣", color: "text-emerald-700 dark:text-emerald-400" },
-                { label: t("एंगेजमेंट दर", "Engagement Rate"),    value: `${socialMediaImpact.engagement_rate}%`,              icon: "⚡", color: "text-amber-700 dark:text-amber-400" },
+                { label: t("कुल शेयर", "Total Shares"),         value: socialMediaImpact.total_shares.toLocaleString(),      icon: "🔁", color: "text-indigo-700" },
+                { label: t("कुल पहुंच", "Total Reach"),          value: `${(socialMediaImpact.total_reach / 1000).toFixed(0)}K`, icon: "👥", color: "text-blue-700" },
+                { label: t("कुल इम्प्रेशन", "Total Impressions"),  value: `${(socialMediaImpact.total_impressions / 1000000).toFixed(1)}M`, icon: "📣", color: "text-emerald-700" },
+                { label: t("एंगेजमेंट दर", "Engagement Rate"),    value: `${socialMediaImpact.engagement_rate}%`,              icon: "⚡", color: "text-amber-700" },
               ].map((kpi) => (
-                <div key={kpi.label} className="border border-gray-200 dark:border-gray-700 rounded-lg p-3 bg-gray-50 dark:bg-[#192334]">
+                <div key={kpi.label} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                   <div className="text-lg">{kpi.icon}</div>
                   <div className={`text-xl font-black mt-1 ${kpi.color}`}>{kpi.value}</div>
-                  <div className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">{kpi.label}</div>
+                  <div className="text-[11px] text-gray-500 mt-0.5">{kpi.label}</div>
                 </div>
               ))}
             </div>
@@ -1223,7 +1223,7 @@ export default function Accountability() {
 
               {/* Platform Breakdown */}
               <div>
-                <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
                   {t("प्लेटफ़ॉर्म-वार शेयर:", "Shares by Platform:")}
                 </h3>
                 <div className="space-y-2.5">
@@ -1243,10 +1243,10 @@ export default function Accountability() {
                         </span>
                         <div className="flex-1">
                           <div className="flex justify-between text-xs mb-1">
-                            <span className="font-semibold text-gray-800 dark:text-gray-200">{p.label}</span>
-                            <span className="text-gray-500 dark:text-gray-400">{d.shares.toLocaleString()} shares · {(d.reach / 1000).toFixed(0)}K reach</span>
+                            <span className="font-semibold text-gray-800">{p.label}</span>
+                            <span className="text-gray-500">{d.shares.toLocaleString()} shares · {(d.reach / 1000).toFixed(0)}K reach</span>
                           </div>
-                          <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                          <div className="w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
                             <div className="h-full rounded-full bg-indigo-500" style={{ width: `${pct}%` }} />
                           </div>
                         </div>
@@ -1258,26 +1258,26 @@ export default function Accountability() {
 
               {/* Share Rate by Rating */}
               <div>
-                <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
                   {t("रेटिंग-अनुसार शेयर दर (वायरल मैकेनिक्स):", "Share Rate by Star Rating (Viral Mechanics):")}
                 </h3>
                 <div className="space-y-2">
                   {Object.values(socialMediaImpact.share_rate_by_rating).reverse().map((r) => (
                     <div key={r.label} className="flex items-center gap-3 text-xs">
                       <span className="w-20 flex-shrink-0 text-right">{r.label}</span>
-                      <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-800 rounded overflow-hidden relative">
+                      <div className="flex-1 h-4 bg-gray-100 rounded overflow-hidden relative">
                         <div
                           className={`h-full rounded transition-all ${
                             r.tone === "escalation" ? "bg-red-500" : r.tone === "neutral" ? "bg-gray-400" : "bg-emerald-500"
                           }`}
                           style={{ width: `${r.rate}%` }}
                         />
-                        <span className="absolute right-2 top-0 bottom-0 flex items-center text-[10px] font-bold text-gray-700 dark:text-gray-300">{r.rate}%</span>
+                        <span className="absolute right-2 top-0 bottom-0 flex items-center text-[10px] font-bold text-gray-700">{r.rate}%</span>
                       </div>
-                      <span className="w-16 text-gray-500 dark:text-gray-400 flex-shrink-0">{r.count.toLocaleString()} posts</span>
+                      <span className="w-16 text-gray-500 flex-shrink-0">{r.count.toLocaleString()} posts</span>
                     </div>
                   ))}
-                  <p className="text-[10px] text-gray-400 dark:text-gray-500 mt-1">
+                  <p className="text-[10px] text-gray-400 mt-1">
                     {t("ध्यान दें: नकारात्मक अनुभव अधिक शेयर होते हैं — यही जवाबदेही का वायरल तंत्र है।", "Note: Negative experiences share 2× more — that's the accountability pressure mechanism.")}
                   </p>
                 </div>
@@ -1287,7 +1287,7 @@ export default function Accountability() {
 
             {/* Top Shared Cases */}
             <div>
-              <h3 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
                 {t("सर्वाधिक शेयर किए गए केस:", "Top Shared Cases:")}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1297,24 +1297,24 @@ export default function Accountability() {
                     to={`/case/${c.caseId}`}
                     className={`border rounded-lg p-3.5 hover:shadow-md transition-all block ${
                       c.tone === "praise"
-                        ? "border-emerald-200 dark:border-emerald-800/50 bg-emerald-50/60 dark:bg-emerald-950/20 hover:border-emerald-400"
-                        : "border-red-200 dark:border-red-800/50 bg-red-50/60 dark:bg-red-950/20 hover:border-red-400"
+                        ? "border-emerald-200 bg-emerald-50/60 hover:border-emerald-400"
+                        : "border-red-200 bg-red-50/60 hover:border-red-400"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-mono text-xs font-bold text-gray-500 dark:text-gray-400">{c.caseId}</span>
+                      <span className="font-mono text-xs font-bold text-gray-500">{c.caseId}</span>
                       <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
                         c.tone === "praise"
-                          ? "bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-400"
-                          : "bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-400"
+                          ? "bg-emerald-100 text-emerald-800"
+                          : "bg-red-100 text-red-800"
                       }`}>
                         {"★".repeat(c.rating)}{"☆".repeat(5 - c.rating)}
                       </span>
                     </div>
-                    <p className="text-xs text-gray-700 dark:text-gray-300 italic mb-2">
+                    <p className="text-xs text-gray-700 italic mb-2">
                       {t(c.snippetHi, c.snippetEn)}
                     </p>
-                    <div className="flex items-center justify-between text-[10px] text-gray-500 dark:text-gray-400">
+                    <div className="flex items-center justify-between text-[10px] text-gray-500">
                       <span>🏛️ {c.officer} · {c.department}</span>
                       <span className="font-semibold">
                         🔁 {c.total_shares.toLocaleString()} shares · 👥 {(c.reach / 1000).toFixed(0)}K reach
@@ -1327,39 +1327,39 @@ export default function Accountability() {
 
             {/* Behavioral Impact + Media Coverage */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg border border-indigo-200 dark:border-indigo-800/50 bg-indigo-50/50 dark:bg-indigo-950/20">
-                <h4 className="text-xs font-bold text-indigo-800 dark:text-indigo-400 uppercase tracking-wider mb-3">
+              <div className="p-4 rounded-lg border border-indigo-200 bg-indigo-50/50">
+                <h4 className="text-xs font-bold text-indigo-800 uppercase tracking-wider mb-3">
                   🎯 {t("व्यावहारिक सुधार प्रभाव:", "Behavioral Change Driven by Sharing:")}
                 </h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">{t("अधिकारियों ने सुधार किया", "Officers who improved")}</span>
-                    <span className="font-bold text-emerald-700 dark:text-emerald-400">{socialMediaImpact.behavioral_impact.officers_improved}</span>
+                    <span className="text-gray-600">{t("अधिकारियों ने सुधार किया", "Officers who improved")}</span>
+                    <span className="font-bold text-emerald-700">{socialMediaImpact.behavioral_impact.officers_improved}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">{t("एस्केलेट किए गए अधिकारी", "Officers escalated via social pressure")}</span>
-                    <span className="font-bold text-red-600 dark:text-red-400">{socialMediaImpact.behavioral_impact.officers_escalated}</span>
+                    <span className="text-gray-600">{t("एस्केलेट किए गए अधिकारी", "Officers escalated via social pressure")}</span>
+                    <span className="font-bold text-red-600">{socialMediaImpact.behavioral_impact.officers_escalated}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-600 dark:text-gray-400">{t("प्रणालीगत समस्याएं उजागर", "Systemic issues exposed")}</span>
-                    <span className="font-bold text-amber-700 dark:text-amber-400">{socialMediaImpact.behavioral_impact.systemic_issues_exposed}</span>
+                    <span className="text-gray-600">{t("प्रणालीगत समस्याएं उजागर", "Systemic issues exposed")}</span>
+                    <span className="font-bold text-amber-700">{socialMediaImpact.behavioral_impact.systemic_issues_exposed}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#192334]">
-                <h4 className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3">
+              <div className="p-4 rounded-lg border border-gray-200 bg-gray-50">
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">
                   📰 {t("मीडिया कवरेज:", "Media Coverage Generated:")}
                 </h4>
-                <div className="text-2xl font-black text-gray-900 dark:text-white mb-1">
+                <div className="text-2xl font-black text-gray-900 mb-1">
                   {socialMediaImpact.media_coverage.articles} {t("लेख", "Articles")}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                <div className="text-xs text-gray-500 mb-2">
                   {(socialMediaImpact.media_coverage.total_media_reach / 1000000).toFixed(1)}M {t("मीडिया पहुंच", "media reach")}
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {socialMediaImpact.media_coverage.major_outlets.map((outlet) => (
-                    <span key={outlet} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-medium">
+                    <span key={outlet} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-200 text-gray-700 font-medium">
                       {outlet}
                     </span>
                   ))}
@@ -1368,12 +1368,12 @@ export default function Accountability() {
             </div>
 
             {/* CTA to give feedback */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-950/30 dark:to-blue-950/30 border border-indigo-200 dark:border-indigo-800/50">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200">
               <div>
-                <div className="font-bold text-indigo-900 dark:text-indigo-300 text-sm">
+                <div className="font-bold text-indigo-900 text-sm">
                   {t("अपना अनुभव साझा करें", "Share your experience — add to the accountability record")}
                 </div>
-                <p className="text-xs text-indigo-700 dark:text-indigo-400 mt-0.5">
+                <p className="text-xs text-indigo-700 mt-0.5">
                   {t("रेटिंग दें → सोशल मीडिया पर शेयर करें → वायरल जवाबदेही बनाएं", "Rate → Share on social media → Create viral accountability")}
                 </p>
               </div>

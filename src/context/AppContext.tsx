@@ -40,11 +40,10 @@ const FONT_SIZE_MAP: Record<TextScale, string> = {
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const storedLang = localStorage.getItem("cpgrams_lang") as Language | null;
-  const storedTheme = localStorage.getItem("cpgrams_theme") as Theme | null;
   const storedScale = localStorage.getItem("cpgrams_text_scale") as TextScale | null;
 
   const [lang, setLangState] = useState<Language>(storedLang || "en");
-  const [theme, setThemeState] = useState<Theme>(storedTheme || "light");
+  const [theme] = useState<Theme>("light");
   const [textScale, setTextScaleState] = useState<TextScale>(storedScale || "md");
 
   const [routingResult, setRoutingResult] = useState<RoutingResult | null>(null);
@@ -52,12 +51,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(getSessionUser());
   const [newCaseId, setNewCaseId] = useState<string | null>(null);
 
-  // Initialize theme on HTML root
+  // Ensure root is strictly clean light mode
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("cpgrams_theme", theme);
-  }, [theme]);
+    document.documentElement.classList.remove("dark");
+    document.documentElement.removeAttribute("data-theme");
+    localStorage.removeItem("cpgrams_theme");
+  }, []);
 
   // Initialize text scaling on HTML root
   useEffect(() => {
