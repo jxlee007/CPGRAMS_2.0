@@ -1,6 +1,6 @@
 ### **Project Summary: CPGRAMS AI**
 
-**CPGRAMS AI** is a voice-first, AI-driven overhaul of India’s Centralised Public Grievance Redress and Monitoring System (CPGRAMS), designed to make public grievance filing effortless, instant, and accountable for every citizen.
+**CPGRAMS 2.0** is a voice-first, AI-driven overhaul of India’s Centralised Public Grievance Redress and Monitoring System (CPGRAMS), designed to make public grievance filing effortless, instant, and accountable for every citizen.
 
 #### **Why It Is Better Than the Current Solution:**
 
