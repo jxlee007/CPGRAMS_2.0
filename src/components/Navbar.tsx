@@ -45,9 +45,9 @@ export default function Navbar() {
             )}
           </span>
           <span className="hidden sm:inline opacity-70">·</span>
-          <a href="/how-it-works" className="hidden sm:inline underline underline-offset-2 opacity-90 hover:opacity-100">
+          <Link to="/how-it-works" className="hidden sm:inline underline underline-offset-2 opacity-90 hover:opacity-100">
             {t("हम क्या बना रहे हैं?", "What are we building?")}
-          </a>
+          </Link>
         </span>
       </div>
 

@@ -202,7 +202,7 @@ export default function Landing() {
       <div className="bg-amber-50 border-b border-amber-200 py-2 px-4 text-center">
         <p className="text-xs text-amber-800 font-medium">
           🔬 <strong>Proof of Concept</strong> — All numbers, officer names, case data, and rankings are <strong>simulated for demonstration only</strong>. Hackathon submission, not an official government portal.{" "}
-          <a href="/how-it-works" className="underline underline-offset-2 font-semibold hover:text-amber-900">What's mocked vs. real →</a>
+          <Link to="/how-it-works" className="underline underline-offset-2 font-semibold hover:text-amber-900">What's mocked vs. real →</Link>
         </p>
       </div>
 

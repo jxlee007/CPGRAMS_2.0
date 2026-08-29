@@ -5,7 +5,7 @@ import path from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/CPGRAMS/',
+  base: '/CPGRAMS_2.0/',
   plugins: [
     react(),
     tailwindcss(),
