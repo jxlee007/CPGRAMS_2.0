@@ -1,0 +1,902 @@
+
+src/
+├── pages/
+│   ├── Landing (screen_1)
+│   ├── FileComplaint (screen_2)
+│   ├── RoutingResult (screen_3)
+│   ├── Dashboard (screen_4)
+│   ├── CaseDetail (screen_5)
+│   ├── Directory (screen_6)
+│   ├── Appeals (screen_7)
+│   ├── Help (screen_8)
+│   ├── Feedback (screen_9)
+│   └── HowItWorks (screen_10)
+├── components/
+│   ├── Navbar
+│   ├── Footer
+│   ├── Card
+│   ├── Button
+│   ├── Timeline
+│   └── FlowDiagram
+├── data/
+│   └── mockData.js (import from JSON)
+├── services/
+│   └── llmRouter.js (OpenAI API calls)
+└── App.js (Router setup)
+
+
+
+{
+  "project": {
+    "name": "CPGRAMS AI Smart Complaint Router",
+    "version": "1.0",
+    "deadline": "Aug 28 2026, 8:00 PM IST",
+    "stack": "Html + Tailwind CSS + OpenAI API",
+    "scope": "5 core screens + 5 dashboard screens (all responsive mobile-first)"
+  },
+
+  "llm_routing_prompt": {
+    "system": "You are a government complaint classifier. Read the citizen's complaint and identify: 1) complaint_type (string), 2) root_issue (string), 3) correct_ministry (string), 4) department (string), 5) confidence (0-1). Respond ONLY in valid JSON with no markdown.",
+    "template": "Complaint: '{complaint_text}'\n\nRespond in this exact JSON format:\n{\n  \"complaint_type\": \"pension|tax|license|aadhaar|road|railway|grievance_bounce|other\",\n  \"root_issue\": \"brief description of actual problem\",\n  \"correct_ministry\": \"Ministry name\",\n  \"correct_department\": \"Department/Office\",\n  \"confidence\": 0.85,\n  \"why_routed_here\": \"short explanation\",\n  \"wrong_routes_old_system\": [\"would incorrectly go to X\", \"would incorrectly go to Y\"]\n}",
+    "examples": [
+      {
+        "input": "My pension hasn't arrived for 3 months. I have the payment slip from my employer dated May 2026.",
+        "output": {
+          "complaint_type": "pension",
+          "root_issue": "EPF pension payment processing failure",
+          "correct_ministry": "EPFO (Employees' Provident Fund Organisation)",
+          "correct_department": "Claims Processing Division",
+          "confidence": 0.96,
+          "why_routed_here": "EPF pension claims are solely handled by EPFO. The issue is payment processing failure within EPF system.",
+          "wrong_routes_old_system": ["Finance Ministry (wrong - not their jurisdiction)", "RBI (wrong - not payment processing)"]
+        }
+      },
+      {
+        "input": "Tax refund pending for 2 years. Filed ITR but no response.",
+        "output": {
+          "complaint_type": "tax",
+          "root_issue": "Income tax refund processing delay",
+          "correct_ministry": "Central Board of Direct Taxes (CBDT)",
+          "correct_department": "CPC Bangalore or Centralised Processing Centre",
+          "confidence": 0.94,
+          "why_routed_here": "All ITR refunds processed by CBDT's CPC. Not a bank issue.",
+          "wrong_routes_old_system": ["State government (wrong)", "Ministry of Finance general grievances (wrong)"]
+        }
+      },
+      {
+        "input": "Driving license pending for 6 months. Completed all tests.",
+        "output": {
+          "complaint_type": "license",
+          "root_issue": "Driving license approval delay at RTO",
+          "correct_ministry": "Ministry of Road Transport & Highways (Sarathi Portal)",
+          "correct_department": "Regional Transport Office (RTO) licensing authority",
+          "confidence": 0.92,
+          "why_routed_here": "All DL approvals handled by RTO licensing authorities via Sarathi system.",
+          "wrong_routes_old_system": ["Police department (wrong)", "State transport (wrong - RTO is specific)"]
+        }
+      }
+    ]
+  },
+
+  "routing_matrix": {
+    "pension": {
+      "ministry": "EPFO",
+      "department": "Claims Processing Division",
+      "contact": "1800-180-1111",
+      "icon": "🏦"
+    },
+    "tax": {
+      "ministry": "Central Board of Direct Taxes (CBDT)",
+      "department": "CPC Bangalore / Centralised Processing Centre",
+      "contact": "1800-425-8850",
+      "icon": "📊"
+    },
+    "license": {
+      "ministry": "Ministry of Road Transport & Highways",
+      "department": "Regional Transport Office (RTO)",
+      "contact": "State-specific RTO",
+      "icon": "🚗"
+    },
+    "aadhaar": {
+      "ministry": "UIDAI",
+      "department": "Unique Identification Authority of India",
+      "contact": "1800-300-1947",
+      "icon": "🆔"
+    },
+    "road": {
+      "ministry": "Ministry of Road Transport & Highways",
+      "department": "State Public Works Department",
+      "contact": "State helpline",
+      "icon": "🛣️"
+    },
+    "railway": {
+      "ministry": "Ministry of Railways",
+      "department": "IRCTC Customer Care",
+      "contact": "139",
+      "icon": "🚂"
+    },
+    "gst": {
+      "ministry": "GST Network (GSTN)",
+      "department": "GST Compliance",
+      "contact": "1800-200-7777",
+      "icon": "🧾"
+    },
+    "grievance_bounce": {
+      "ministry": "DARPG",
+      "department": "Directorate of Public Grievances",
+      "contact": "23401455",
+      "icon": "📢"
+    }
+  },
+
+  "mock_data": {
+    "test_complaints": [
+      {
+        "id": 1,
+        "text": "My pension hasn't arrived for 3 months. I have the payment slip from my employer dated May 2026 but nothing reached my bank account.",
+        "expected_routing": "EPFO"
+      },
+      {
+        "id": 2,
+        "text": "Filed my income tax return 2 years ago but refund is still pending. The portal shows 'processed' but no money.",
+        "expected_routing": "CBDT"
+      },
+      {
+        "id": 3,
+        "text": "Applied for driving license 6 months ago, passed all tests, but license approval is stuck on 'pending' status.",
+        "expected_routing": "RTO"
+      },
+      {
+        "id": 4,
+        "text": "Aadhaar enrollment was rejected saying my fingerprints didn't match, but I haven't changed anything.",
+        "expected_routing": "UIDAI"
+      },
+      {
+        "id": 5,
+        "text": "Municipal promised to fix our sector roads with 50 lakhs sanctioned last year but no work happened.",
+        "expected_routing": "road"
+      },
+      {
+        "id": 6,
+        "text": "IRCTC Tatkal ticket refund was debited from my account but I never got the ticket or refund.",
+        "expected_routing": "railway"
+      },
+      {
+        "id": 7,
+        "text": "GST return upload failed at last minute on filing deadline. Now showing payment error but money was deducted.",
+        "expected_routing": "gst"
+      },
+      {
+        "id": 8,
+        "text": "Filed complaint 3 times. It keeps bouncing between departments. No one takes ownership.",
+        "expected_routing": "grievance_bounce"
+      }
+    ],
+
+    "dashboard_cases": [
+      {
+        "id": "CPG_20260825_001",
+        "title": "Pension Payment Delayed 3 Months",
+        "filed_date": "2026-05-15",
+        "status": "In Progress",
+        "routed_to": "EPFO",
+        "current_stage": "Verification by CPC",
+        "expected_resolution": "2026-09-15",
+        "days_pending": 102,
+        "priority": "high"
+      },
+      {
+        "id": "CPG_20260820_002",
+        "title": "Income Tax Refund Stuck 2 Years",
+        "filed_date": "2024-08-20",
+        "status": "Escalated",
+        "routed_to": "CBDT",
+        "current_stage": "Appeal Review",
+        "expected_resolution": "2026-10-01",
+        "days_pending": 737,
+        "priority": "critical"
+      },
+      {
+        "id": "CPG_20260810_003",
+        "title": "Driving License Approval Pending",
+        "filed_date": "2026-02-10",
+        "status": "In Progress",
+        "routed_to": "RTO",
+        "current_stage": "Document Verification",
+        "expected_resolution": "2026-09-10",
+        "days_pending": 197,
+        "priority": "medium"
+      },
+      {
+        "id": "CPG_20260801_004",
+        "title": "Aadhaar Enrollment Rejected",
+        "filed_date": "2026-08-01",
+        "status": "Awaiting Action",
+        "routed_to": "UIDAI",
+        "current_stage": "Biometric Re-verification",
+        "expected_resolution": "2026-08-30",
+        "days_pending": 26,
+        "priority": "high"
+      },
+      {
+        "id": "CPG_20260725_005",
+        "title": "Road Repair Not Started",
+        "filed_date": "2026-07-25",
+        "status": "In Progress",
+        "routed_to": "PWD",
+        "current_stage": "Tender Process",
+        "expected_resolution": "2027-01-25",
+        "days_pending": 33,
+        "priority": "medium"
+      }
+    ],
+
+    "officers": [
+      {
+        "id": 1,
+        "name": "Dpi Agarwal",
+        "designation": "Commissioner of Income Tax",
+        "ministry": "CBDT",
+        "department": "Central Board of Direct Taxes",
+        "address": "Central Board of Direct Taxes Room No. 428, 4th Floor Mayur Bhawan, Connaught Circus, New Delhi",
+        "phone": "01123416148",
+        "email": "delhi-itps@incometax.gov.in"
+      },
+      {
+        "id": 2,
+        "name": "Dr. Shailendra Kumar Sinha",
+        "designation": "Director General",
+        "ministry": "CBIT",
+        "department": "Central Board of Indirect Taxes and Customs",
+        "address": "Directorate General of Taxpayer Services, 1st Floor, Central Revenue Building, IP Estate, New Delhi",
+        "phone": "01123705809",
+        "email": "shailendra.sinha@cbic-gov.in"
+      },
+      {
+        "id": 3,
+        "name": "Sardendu Kumar Pandey",
+        "designation": "Director",
+        "ministry": "DARPG",
+        "department": "Department of Administrative Reforms and Public Grievances",
+        "address": "5th Floor Sardar Patel Bhawan Sansad Marg, New Delhi",
+        "phone": "01123401455",
+        "email": "director-pg@darpg.gov.in"
+      },
+      {
+        "id": 4,
+        "name": "Raj Kumar Singh",
+        "designation": "Regional Transport Officer",
+        "ministry": "MoRTH",
+        "department": "Delhi RTO - Sarai Kale Khan",
+        "address": "Regional Transport Office, Sarai Kale Khan, New Delhi",
+        "phone": "011-23899800",
+        "email": "delhi.rto@transport.gov.in"
+      },
+      {
+        "id": 5,
+        "name": "Ajay Bhatnagar",
+        "designation": "Chief of Pension Division",
+        "ministry": "EPFO",
+        "department": "Employees' Provident Fund Organisation",
+        "address": "EPFO Bhawan, CGO Complex, Lodhi Road, New Delhi",
+        "phone": "1800-180-1111",
+        "email": "epfo.support@epfindia.gov.in"
+      }
+    ],
+
+    "appeals": [
+      {
+        "id": "APPEAL_001",
+        "grievance_id": "CPG_20260820_002",
+        "filed_date": "2026-07-15",
+        "appeal_type": "First Appeal",
+        "status": "Under Review",
+        "appellate_authority": "Nodal Appellate Authority - CBDT",
+        "days_since_filed": 41,
+        "next_hearing": "2026-09-15"
+      },
+      {
+        "id": "APPEAL_002",
+        "grievance_id": "CPG_20260725_005",
+        "filed_date": "2026-08-20",
+        "appeal_type": "First Appeal",
+        "status": "Approved",
+        "appellate_authority": "Nodal Authority - PWD",
+        "days_since_filed": 5,
+        "next_hearing": null
+      }
+    ]
+  },
+
+  "screens": {
+    "screen_1_landing": {
+      "name": "Landing / Home",
+      "path": "/",
+      "layout": "hero + cta + about",
+      "components": [
+        {
+          "type": "hero",
+          "mobile": "full-width, padding-6",
+          "desktop": "max-w-7xl mx-auto padding-12",
+          "content": {
+            "headline": "CPGRAMS AI Smart Complaint Router",
+            "subheadline": "Your grievance reaches the RIGHT department FIRST TIME",
+            "cta_button": "File a Complaint",
+            "cta_link": "/file-complaint"
+          }
+        },
+        {
+          "type": "comparison_card",
+          "mobile": "stack vertically, padding-4",
+          "desktop": "grid 2 cols, gap-8",
+          "left": {
+            "title": "❌ OLD SYSTEM",
+            "steps": [
+              "Type complaint",
+              "Keyword match → Wrong dept",
+              "Bounce to dept 2",
+              "Bounce to dept 3",
+              "Abandoned after 3 months"
+            ],
+            "color": "red"
+          },
+          "right": {
+            "title": "✅ NEW SYSTEM",
+            "steps": [
+              "Type complaint",
+              "AI understands actual problem",
+              "Routes to CORRECT dept",
+              "Gets resolved first time",
+              "Resolved in weeks"
+            ],
+            "color": "green"
+          }
+        },
+        {
+          "type": "about_section",
+          "content": "CPGRAMS uses rigid keyword matching that bounces complaints. Our AI reads the actual problem and routes to the correct ministry on first submission."
+        }
+      ]
+    },
+
+    "screen_2_file_complaint": {
+      "name": "File New Complaint",
+      "path": "/file-complaint",
+      "layout": "form + live routing",
+      "mobile_layout": "single column, full-width textarea",
+      "desktop_layout": "50-50 split: form left, routing preview right",
+      "components": [
+        {
+          "type": "input_form",
+          "fields": [
+            {
+              "name": "complaint_text",
+              "type": "textarea",
+              "placeholder": "Describe your complaint in plain language. Example: My pension hasn't arrived for 3 months...",
+              "mobile": "height-48, padding-4, text-base",
+              "desktop": "height-64, padding-6, text-lg",
+              "validation": "min 20 chars"
+            },
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "Your email for tracking",
+              "mobile": "width-full, padding-3",
+              "desktop": "width-full, padding-4"
+            }
+          ],
+          "button": {
+            "text": "Analyze & Route Complaint",
+            "onclick": "callLLMRouter()",
+            "loading_text": "🤖 Understanding your complaint...",
+            "mobile": "width-full, padding-4, text-lg",
+            "desktop": "width-full, padding-4, text-xl"
+          }
+        },
+        {
+          "type": "routing_preview",
+          "mobile": "hidden until submitted, then full-width card below",
+          "desktop": "sticky right panel, updates in real-time as user types",
+          "content": "Shows predicted routing with confidence score"
+        }
+      ]
+    },
+
+    "screen_3_routing_output": {
+      "name": "Routing Result & Comparison",
+      "path": "/routing-result/:id",
+      "layout": "result card + old system comparison",
+      "mobile_layout": "single column, cards stack",
+      "desktop_layout": "center aligned, max-w-4xl",
+      "components": [
+        {
+          "type": "success_banner",
+          "content": "✅ CORRECT ROUTING FOUND",
+          "color": "green",
+          "mobile": "padding-4, text-sm",
+          "desktop": "padding-6, text-lg"
+        },
+        {
+          "type": "routing_card",
+          "mobile": "full-width, padding-4, rounded-lg",
+          "desktop": "max-w-2xl, padding-8, rounded-xl",
+          "fields": [
+            "ministry_name",
+            "department_name",
+            "confidence_score (0.94)",
+            "why_routed_here (explanation)",
+            "contact_details (phone/email)"
+          ],
+          "buttons": [
+            {
+              "text": "📋 Copy Details",
+              "action": "copy_to_clipboard"
+            },
+            {
+              "text": "📤 Submit to CPGRAMS",
+              "action": "submit_mock (show success message)"
+            },
+            {
+              "text": "📞 Call Department",
+              "action": "call_link (tel:)"
+            }
+          ]
+        },
+        {
+          "type": "comparison_section",
+          "mobile": "padding-4, text-sm",
+          "desktop": "padding-6, text-base",
+          "title": "❌ WHERE OLD SYSTEM WOULD HAVE SENT IT",
+          "content": [
+            "Incorrect Dept 1 (would bounce)",
+            "Incorrect Dept 2 (would bounce)",
+            "Your correct routing (✅ FIXED)"
+          ]
+        },
+        {
+          "type": "next_steps",
+          "buttons": [
+            {
+              "text": "View My Cases",
+              "link": "/dashboard"
+            },
+            {
+              "text": "File Another",
+              "link": "/file-complaint"
+            }
+          ]
+        }
+      ]
+    },
+
+    "screen_4_dashboard": {
+      "name": "My Cases Dashboard",
+      "path": "/dashboard",
+      "layout": "grid cards",
+      "mobile_layout": "vertical cards, full-width",
+      "desktop_layout": "3-column grid, max-w-6xl",
+      "components": [
+        {
+          "type": "header",
+          "content": "Your Active Grievances",
+          "mobile": "padding-4, text-xl",
+          "desktop": "padding-6, text-2xl"
+        },
+        {
+          "type": "stats_bar",
+          "mobile": "3 columns, small",
+          "desktop": "4 columns, regular",
+          "stats": [
+            {
+              "label": "Total Filed",
+              "value": "5",
+              "color": "blue"
+            },
+            {
+              "label": "In Progress",
+              "value": "3",
+              "color": "yellow"
+            },
+            {
+              "label": "Resolved",
+              "value": "2",
+              "color": "green"
+            },
+            {
+              "label": "Escalated",
+              "value": "1",
+              "color": "red"
+            }
+          ]
+        },
+        {
+          "type": "case_cards",
+          "mobile": "stack vertical, padding-4 each",
+          "desktop": "grid responsive",
+          "card_fields": [
+            "case_id",
+            "title",
+            "status_badge",
+            "routed_to",
+            "filed_date",
+            "days_pending",
+            "priority_indicator",
+            "action_buttons (View, Appeal)"
+          ]
+        }
+      ]
+    },
+
+    "screen_5_case_detail": {
+      "name": "Case Details & Timeline",
+      "path": "/case/:id",
+      "layout": "vertical timeline",
+      "mobile_layout": "single column, padding-4",
+      "desktop_layout": "max-w-4xl centered, padding-8",
+      "components": [
+        {
+          "type": "case_header",
+          "fields": ["case_id", "title", "status", "routed_to", "filed_date"]
+        },
+        {
+          "type": "status_badge",
+          "current_status": "In Progress",
+          "current_stage": "Verification by CPC",
+          "expected_resolution": "2026-09-15",
+          "mobile": "full-width, padding-4",
+          "desktop": "max-width, centered, padding-6"
+        },
+        {
+          "type": "timeline",
+          "mobile": "vertical dots, padding-2",
+          "desktop": "vertical with connecting lines",
+          "events": [
+            {
+              "date": "2026-05-15",
+              "stage": "Complaint Filed",
+              "details": "Your complaint was received",
+              "status": "completed"
+            },
+            {
+              "date": "2026-05-16",
+              "stage": "Routed to EPFO",
+              "details": "Correctly routed using AI classifier",
+              "status": "completed"
+            },
+            {
+              "date": "2026-06-01",
+              "stage": "Initial Review",
+              "details": "Department acknowledged receipt",
+              "status": "completed"
+            },
+            {
+              "date": "NOW",
+              "stage": "Verification in Progress",
+              "details": "CPC verifying your claim documents",
+              "status": "in_progress"
+            },
+            {
+              "date": "2026-09-15",
+              "stage": "Expected Resolution",
+              "details": "Target resolution date",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "type": "action_buttons",
+          "mobile": "stack, full-width",
+          "desktop": "inline",
+          "buttons": [
+            "View Department Contact",
+            "File Appeal",
+            "Send Reminder"
+          ]
+        }
+      ]
+    },
+
+    "screen_6_officer_directory": {
+      "name": "Department Officer Directory",
+      "path": "/directory",
+      "layout": "search + list",
+      "mobile_layout": "search top, list below, cards stack",
+      "desktop_layout": "search top, 2-column grid",
+      "components": [
+        {
+          "type": "search_bar",
+          "placeholder": "Search by ministry, department or officer name",
+          "mobile": "full-width, padding-4, text-base",
+          "desktop": "full-width, padding-6, text-lg",
+          "filters": ["ministry", "department", "location"]
+        },
+        {
+          "type": "officer_cards",
+          "mobile": "full-width, padding-4 each",
+          "desktop": "2 columns, gap-6",
+          "card_content": [
+            "officer_photo (avatar)",
+            "name",
+            "designation",
+            "ministry",
+            "department",
+            "address",
+            "phone",
+            "email_link"
+          ]
+        }
+      ]
+    },
+
+    "screen_7_appeals": {
+      "name": "Appeals & Escalations",
+      "path": "/appeals",
+      "layout": "tabs + cards",
+      "mobile_layout": "single column, tabs horizontal scroll",
+      "desktop_layout": "tabs + 2-column grid",
+      "components": [
+        {
+          "type": "tabs",
+          "options": ["Active Appeals", "Approved", "Pending"],
+          "mobile": "overflow-x-auto, padding-2",
+          "desktop": "inline flex, gap-4"
+        },
+        {
+          "type": "appeal_cards",
+          "mobile": "full-width, padding-4",
+          "desktop": "grid 2 cols",
+          "fields": [
+            "appeal_id",
+            "related_grievance",
+            "appeal_type",
+            "filed_date",
+            "status",
+            "appellate_authority",
+            "next_hearing",
+            "action_button (View Details)"
+          ]
+        },
+        {
+          "type": "file_appeal_button",
+          "text": "📋 File New Appeal",
+          "action": "show_modal_form",
+          "mobile": "fixed bottom, width-90%, margin-4",
+          "desktop": "inline button"
+        }
+      ]
+    },
+
+    "screen_8_help_center": {
+      "name": "Help & FAQs",
+      "path": "/help",
+      "layout": "accordion",
+      "mobile_layout": "single column, padding-4",
+      "desktop_layout": "2-column, max-width, centered",
+      "components": [
+        {
+          "type": "faq_accordion",
+          "items": [
+            {
+              "question": "What is CPGRAMS?",
+              "answer": "CPGRAMS is the Centralized Public Grievance Redress and Monitoring System..."
+            },
+            {
+              "question": "How does AI routing work?",
+              "answer": "Our AI reads your complaint text, understands the actual problem..."
+            },
+            {
+              "question": "What complaints are NOT covered?",
+              "answer": "RTI matters, court cases, religious matters, service matters..."
+            },
+            {
+              "question": "How long does resolution take?",
+              "answer": "Standard: 21 days. Complex: up to 60 days. Appeals: additional 30 days."
+            },
+            {
+              "question": "Can I file an appeal?",
+              "answer": "Yes, if unsatisfied with resolution. File First Appeal within 30 days..."
+            }
+          ],
+          "mobile": "padding-3, text-sm",
+          "desktop": "padding-6, text-base"
+        }
+      ]
+    },
+
+    "screen_9_feedback": {
+      "name": "Rate & Feedback",
+      "path": "/feedback/:case_id",
+      "layout": "form",
+      "mobile_layout": "full-screen form, padding-4",
+      "desktop_layout": "centered card, max-width-2xl",
+      "components": [
+        {
+          "type": "rating_form",
+          "fields": [
+            {
+              "label": "How satisfied are you with resolution?",
+              "type": "star_rating",
+              "max": 5
+            },
+            {
+              "label": "Was routing correct?",
+              "type": "yes_no"
+            },
+            {
+              "label": "Any additional feedback?",
+              "type": "textarea",
+              "placeholder": "Help us improve...",
+              "optional": true
+            }
+          ],
+          "button": {
+            "text": "Submit Feedback",
+            "action": "save_mock_feedback"
+          }
+        }
+      ]
+    },
+
+    "screen_10_architecture": {
+      "name": "How It Works (Explainer)",
+      "path": "/how-it-works",
+      "layout": "vertical flow diagram",
+      "mobile_layout": "vertical stack, SVG responsive",
+      "desktop_layout": "centered flow, max-width-5xl",
+      "components": [
+        {
+          "type": "flow_diagram",
+          "steps": [
+            {
+              "number": 1,
+              "title": "Citizen Input",
+              "description": "You describe your complaint in plain language",
+              "icon": "✍️"
+            },
+            {
+              "number": 2,
+              "title": "LLM Classification",
+              "description": "GPT-4 reads actual problem (not keywords)",
+              "icon": "🤖"
+            },
+            {
+              "number": 3,
+              "title": "Routing Logic",
+              "description": "AI maps to correct ministry/department",
+              "icon": "🎯"
+            },
+            {
+              "number": 4,
+              "title": "First-Time Routing",
+              "description": "Complaint goes to RIGHT place first try",
+              "icon": "✅"
+            },
+            {
+              "number": 5,
+              "title": "Faster Resolution",
+              "description": "No bouncing between departments",
+              "icon": "⚡"
+            }
+          ],
+          "mobile": "vertical, padding-4 between",
+          "desktop": "connected flow, padding-8 between"
+        },
+        {
+          "type": "tech_stack",
+          "title": "Built With",
+          "items": ["React", "Tailwind CSS", "OpenAI GPT-4", "Mock JSON Data"],
+          "mobile": "list, padding-4",
+          "desktop": "inline badges, centered"
+        }
+      ]
+    }
+  },
+
+  "responsive_design_rules": {
+    "breakpoints": {
+      "mobile": "0-640px",
+      "tablet": "641-1024px",
+      "desktop": "1025px+"
+    },
+    "typography": {
+      "mobile": {
+        "h1": "text-2xl, font-bold",
+        "h2": "text-xl, font-bold",
+        "body": "text-base, leading-relaxed",
+        "small": "text-sm"
+      },
+      "desktop": {
+        "h1": "text-4xl, font-bold",
+        "h2": "text-2xl, font-bold",
+        "body": "text-lg, leading-relaxed",
+        "small": "text-base"
+      }
+    },
+    "spacing": {
+      "mobile": "padding-4 (16px) for containers, padding-2 (8px) between elements",
+      "desktop": "padding-8 (32px) for containers, padding-4 (16px) between elements"
+    },
+    "colors": {
+      "primary": "#4F46E5",
+      "success": "#10B981",
+      "error": "#EF4444",
+      "warning": "#F59E0B",
+      "background": "#FFFFFF",
+      "text": "#1F2937",
+      "border": "#E5E7EB"
+    }
+  },
+
+  "navigation_flow": {
+    "landing": ["file-complaint", "dashboard"],
+    "file_complaint": ["routing_result", "help"],
+    "routing_result": ["dashboard", "file_complaint"],
+    "dashboard": ["case_detail", "appeals", "feedback", "directory"],
+    "case_detail": ["appeals", "directory", "send_reminder"],
+    "appeals": ["case_detail"],
+    "directory": ["case_detail"],
+    "help": ["file_complaint"],
+    "feedback": ["dashboard"]
+  },
+
+  "mock_api_responses": {
+    "llm_routing": {
+      "endpoint": "POST /api/classify-complaint",
+      "body": "{ complaint_text: string }",
+      "response": "{ complaint_type, root_issue, correct_ministry, correct_department, confidence, why_routed_here, wrong_routes_old_system }"
+    },
+    "submit_complaint": {
+      "endpoint": "POST /api/submit-complaint",
+      "response": "{ success: true, case_id: 'CPG_20260825_001', message: 'Complaint submitted successfully' }"
+    },
+    "fetch_cases": {
+      "endpoint": "GET /api/my-cases",
+      "response": "[ mock_data.dashboard_cases ]"
+    },
+    "fetch_case_detail": {
+      "endpoint": "GET /api/case/:id",
+      "response": "{ single case with timeline }"
+    },
+    "fetch_officers": {
+      "endpoint": "GET /api/officers",
+      "response": "[ mock_data.officers ]"
+    },
+    "submit_feedback": {
+      "endpoint": "POST /api/feedback",
+      "response": "{ success: true, message: 'Feedback recorded' }"
+    }
+  },
+
+  "build_checklist": {
+    "phase_1_setup": [
+      "Create React app with Tailwind",
+      "Set up routing (React Router)",
+      "Import all mock data",
+      "Create main layout (header, nav, footer)"
+    ],
+    "phase_2_core_feature": [
+      "File complaint form (mobile + desktop responsive)",
+      "LLM integration (OpenAI API with error handling)",
+      "Routing output display",
+      "Before/after comparison section"
+    ],
+    "phase_3_dashboard": [
+      "Dashboard with case cards",
+      "Case detail view with timeline",
+      "Officer directory with search",
+      "Appeals section"
+    ],
+    "phase_4_supporting_screens": [
+      "Help center FAQs",
+      "Feedback form",
+      "Architecture explainer",
+      "Landing page"
+    ],
+    "phase_5_polish": [
+      "Mobile responsiveness testing",
+      "Loading states (spinners, skeleton screens)",
+      "Error handling (network, LLM failures)",
+      "Accessibility (alt text, ARIA labels)"
+    ]
+  }
+}
